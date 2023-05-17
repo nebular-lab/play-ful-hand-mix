@@ -65,6 +65,7 @@ export const suitTypeSchema = z.union([
   z.literal('offsuited'),
   z.literal('pair'),
 ]);
+export type suitType = z.infer<typeof suitTypeSchema>;
 
 export const ActionTypeSchema = z.object({
   move: MoveTypeSchema,
