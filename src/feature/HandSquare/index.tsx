@@ -10,7 +10,7 @@ type Props = {
 };
 export const HandSquare: FC<Props> = (props) => {
   const { handleDraw, suit, text, hands, isExist } = props;
-  const boxSize = '60px';
+  const boxSize = '48px';
   const textColor = isExist ? 'white' : 'gray.400';
   let gridNum: number;
   switch (suit) {
