@@ -1,7 +1,6 @@
-import { HandRangeType, HandSquareSchema } from '@/types';
+import { HandRangeType } from '@/types';
 import { Flex } from '@chakra-ui/react';
 import { FC } from 'react';
-import { HandSquare } from '../HandSquare';
 import { HandSquareContainer } from '../HandSquare/HandSquareContainer';
 
 type Props = {
@@ -13,10 +12,11 @@ export const HandMatrix: FC<Props> = (props) => {
     <Flex direction={'column'}>
       {handRange.map((handRow, rowIndex) => {
         return (
-          <Flex>
+          <Flex key={rowIndex}>
             {handRow.map((hands, colIndex) => {
               return (
                 <HandSquareContainer
+                  key={colIndex}
                   hands={hands.hands}
                   suit={hands.suit}
                   row={rowIndex}

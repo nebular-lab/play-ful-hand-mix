@@ -37,8 +37,8 @@ export const HandSquare: FC<Props> = (props) => {
       boxSizing="border-box"
     >
       <SimpleGrid columns={gridNum} position={'absolute'} w={'full'} h={'full'}>
-        {hands.map((hand) => {
-          return <HandStripe actions={hand.actions} suit={suit} />;
+        {hands.map((hand, index) => {
+          return <HandStripe key={index} actions={hand.actions} suit={suit} />;
         })}
       </SimpleGrid>
       <Text position={'absolute'} userSelect={'none'} color={textColor}>
@@ -70,7 +70,7 @@ const HandStripe: FC<HandStripeProps> = (props) => {
 
   return (
     <Flex direction={'column-reverse'} w={'full'} h={'full'}>
-      {actions.map((action) => {
+      {actions.map((action, index) => {
         let bg = 'main';
         switch (action.move) {
           case 'FOLD':
@@ -98,7 +98,7 @@ const HandStripe: FC<HandStripeProps> = (props) => {
             bg = 'betL';
             break;
         }
-        return <Box w={'full'} h={`${action.percent}%`} bg={bg}></Box>;
+        return <Box key={index} w={'full'} h={`${action.percent}%`} bg={bg}></Box>;
       })}
     </Flex>
   );
