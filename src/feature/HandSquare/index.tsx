@@ -1,14 +1,14 @@
-import { ActionType, HandType, suitType } from '@/types';
+import { ActionType, HandActionsType, suitType } from '@/types';
 import { Box, Flex, SimpleGrid, Text, grid } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 type Props = {
   handleDraw: () => void;
   suit: suitType;
   text: string;
-  hands: HandType[];
+  hands: HandActionsType[];
   isExist: boolean;
 };
-export const HandSquare: FC<Props> = (props) => {
+const HandSquare: FC<Props> = (props) => {
   const { handleDraw, suit, text, hands, isExist } = props;
   const boxSize = '48px';
   const textColor = isExist ? 'white' : 'gray.400';
@@ -35,6 +35,7 @@ export const HandSquare: FC<Props> = (props) => {
       alignItems={'center'}
       border={'1px'}
       boxSizing="border-box"
+      onClick={handleDraw}
     >
       <SimpleGrid columns={gridNum} position={'absolute'} w={'full'} h={'full'}>
         {hands.map((hand, index) => {
@@ -103,3 +104,5 @@ const HandStripe: FC<HandStripeProps> = (props) => {
     </Flex>
   );
 };
+
+export default memo(HandSquare);

@@ -1,18 +1,21 @@
-import { HandType, suitType } from '@/types';
-import { HandSquare } from '.';
-import { FC } from 'react';
+import { HandActionsType, HandSquareType, suitType } from '@/types';
+import HandSquare from '.';
+import { FC, memo } from 'react';
 import { cardStrings } from '@/const';
+import { useHandRange } from '@/hooks/useHandRange';
+import { useRecoilState } from 'recoil';
+import { handRangeState } from '@/store';
 
 type Props = {
-  hands: HandType[];
-  suit: suitType;
   row: number;
   col: number;
 };
 
-export const HandSquareContainer: FC<Props> = (props) => {
-  const { hands, suit, row, col } = props;
-
+const HandSquareContainer: FC<Props> = (props) => {
+  const { row, col } = props;
+  const { drawMatrix } = useHandRange();
+  const [handSquare] = useRecoilState(handRangeState({ row, col }));
+  const suit = handSquare.suit;
   let text = '';
   if (suit === 'pair') {
     text = `${cardStrings[row]}${cardStrings[col]}`;
@@ -24,13 +27,13 @@ export const HandSquareContainer: FC<Props> = (props) => {
 
   return (
     <HandSquare
-      handleDraw={() => {
-        console.log('aaa');
-      }}
+      handleDraw={() => drawMatrix(row, col)}
       suit={suit}
       text={text}
       isExist={true}
-      hands={hands}
+      hands={handSquare.hands}
     />
   );
 };
+
+export default memo(HandSquareContainer);

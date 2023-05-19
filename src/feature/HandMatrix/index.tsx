@@ -1,26 +1,25 @@
 import { HandRangeType } from '@/types';
 import { Flex } from '@chakra-ui/react';
-import { FC } from 'react';
-import { HandSquareContainer } from '../HandSquare/HandSquareContainer';
+import { FC, memo } from 'react';
+import HandSquareContainer from '../HandSquare/HandSquareContainer';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
-type Props = {
-  handRange: HandRangeType;
-};
-export const HandMatrix: FC<Props> = (props) => {
-  const { handRange } = props;
+
+const HandMatrix = () => {
+
+  const thirteenArray=[0,1,2,3,4,5,6,7,8,9,10,11,12]
   return (
     <Flex direction={'column'}>
-      {handRange.map((handRow, rowIndex) => {
+      {thirteenArray.map((row) => {
         return (
-          <Flex key={rowIndex}>
-            {handRow.map((hands, colIndex) => {
+          <Flex key={row}>
+            {thirteenArray.map((col) => {
               return (
                 <HandSquareContainer
-                  key={colIndex}
-                  hands={hands.hands}
-                  suit={hands.suit}
-                  row={rowIndex}
-                  col={colIndex}
+                  key={col}
+ 
+                  row={row}
+                  col={col}
                 />
               );
             })}
@@ -30,3 +29,5 @@ export const HandMatrix: FC<Props> = (props) => {
     </Flex>
   );
 };
+
+export default memo(HandMatrix);

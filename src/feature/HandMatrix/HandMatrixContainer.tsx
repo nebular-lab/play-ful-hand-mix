@@ -1,6 +1,10 @@
+import { useHandRange } from '@/hooks/useHandRange';
 import { handRangeState } from '@/store';
 import { useRecoilCallback, useRecoilState } from 'recoil';
+import HandMatrix from '.';
 
-const HandMatrixContainer = () => {
-  const [handRange, setHandRange] = useRecoilState(handRangeState);
+
+export const HandMatrixContainer = () => {
+  console.log('HandMatrixContainer');
+  return <HandMatrix  />;
 };

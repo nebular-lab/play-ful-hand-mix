@@ -73,14 +73,14 @@ export const ActionTypeSchema = z.object({
 });
 export type ActionType = z.infer<typeof ActionTypeSchema>;
 
-export const HandSchema = z.object({
+export const HandActionsSchema = z.object({
   actions: z.array(ActionTypeSchema),
 });
-export type HandType = z.infer<typeof HandSchema>;
+export type HandActionsType = z.infer<typeof HandActionsSchema>;
 
 export const HandSquareSchema = z.object({
   suit: suitTypeSchema,
-  hands:z.array(HandSchema)
+  hands:z.array(HandActionsSchema)
 });
 export type HandSquareType = z.infer<typeof HandSquareSchema>;
 

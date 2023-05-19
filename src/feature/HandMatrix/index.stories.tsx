@@ -1,14 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { HandMatrix } from '.';
+
 import { defaultHandRange } from '@/const';
-type Story = StoryObj<typeof HandMatrix>;
-const meta: Meta<typeof HandMatrix> = {
-  component: HandMatrix,
+import { HandMatrixContainer } from './HandMatrixContainer';
+import { RecoilRoot } from 'recoil';
+type Story = StoryObj<typeof HandMatrixContainer>;
+const RecoilComponent = () => (
+  <RecoilRoot>
+    <HandMatrixContainer />
+  </RecoilRoot>
+);
+const meta: Meta<typeof HandMatrixContainer> = {
+  component: RecoilComponent,
   argTypes: {},
 };
 export default meta;
-export const Default: Story = {
-  args: {
-    handRange: defaultHandRange,
-  },
-};
+export const Default: Story = {};
