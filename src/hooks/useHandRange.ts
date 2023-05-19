@@ -1,4 +1,4 @@
-import { defaultHandRange2 } from '@/const';
+
 import { drawActionsState, handRangeState } from '@/store';
 import { produce } from 'immer';
 import { useRecoilCallback, useRecoilValue } from 'recoil';

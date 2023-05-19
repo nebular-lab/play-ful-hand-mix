@@ -17,6 +17,9 @@ export const includeSuitState = atom<Array<number>>({
 export const drawActionsState = atom<HandActionsType>({
   key: 'drawActionsState',
   default: {
-    actions: [{ move: 'FOLD', percent: 100 }],
+    actions: [
+      { move: 'BET S', percent: 40 },
+      { move: 'FOLD', percent: 60 },
+    ],
   },
 });
