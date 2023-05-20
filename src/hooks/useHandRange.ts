@@ -10,7 +10,7 @@ export const useHandRange = () => {
         const drawActions = snapshot.getLoadable(drawActionsState).getValue();
         const updatedHandRange = produce(handRange, (draft) => {
           draft.hands.forEach((hand) => {
-            hand.actions = drawActions.actions;
+            hand.actions = drawActions;
           });
         });
         set(handRangeState({ row, col }), updatedHandRange);

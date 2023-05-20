@@ -4,6 +4,6 @@ import DrawActionGroup from '.';
 
 const DrawActionGroupContainer = () => {
   const [drawActions] = useRecoilState(drawActionsState);
-  return <DrawActionGroup actions={drawActions.actions} />;
+  return <DrawActionGroup actions={drawActions} />;
 };
 export default DrawActionGroupContainer;

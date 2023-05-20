@@ -1,4 +1,4 @@
-import { MoveType } from '@/types';
+import { ActionType, MoveType } from '@/types';
 import { Button, Flex, SimpleGrid, Spacer, Text } from '@chakra-ui/react';
 import { FC, memo } from 'react';
 
@@ -6,7 +6,7 @@ type Props = {
   move: MoveType;
   percent: number;
   moveColor: string;
-  setAction: () => void;
+  setAction: (inputAction: ActionType) => void;
 };
 const DrawAction: FC<Props> = (props) => {
   const { move, percent, moveColor, setAction } = props;
@@ -27,13 +27,33 @@ const DrawAction: FC<Props> = (props) => {
         {percent}
       </Text>
       <SimpleGrid columns={2} gap={'1px'}>
-        <PercentButton percent={0} setAction={setAction} moveColor={moveColor} />
-        <PercentButton percent={25} setAction={setAction} moveColor={moveColor} />
+        <PercentButton
+          percent={0}
+          setAction={() => setAction({ move, percent: 0 })}
+          moveColor={moveColor}
+        />
+        <PercentButton
+          percent={25}
+          setAction={() => setAction({ move, percent: 25 })}
+          moveColor={moveColor}
+        />
       </SimpleGrid>
       <SimpleGrid columns={3} gap={'1px'}>
-        <PercentButton percent={50} setAction={setAction} moveColor={moveColor} />
-        <PercentButton percent={75} setAction={setAction} moveColor={moveColor} />
-        <PercentButton percent={100} setAction={setAction} moveColor={moveColor} />
+        <PercentButton
+          percent={50}
+          setAction={() => setAction({ move, percent: 50 })}
+          moveColor={moveColor}
+        />
+        <PercentButton
+          percent={75}
+          setAction={() => setAction({ move, percent: 75 })}
+          moveColor={moveColor}
+        />
+        <PercentButton
+          percent={100}
+          setAction={() => setAction({ move, percent: 100 })}
+          moveColor={moveColor}
+        />
       </SimpleGrid>
     </Flex>
   );
@@ -52,6 +72,7 @@ const PercentButton: FC<PercentButtonProps> = (props) => {
       size={'xs'}
       rounded={'sm'}
       _hover={{ color: moveColor, bg: 'white' }}
+      onClick={setAction}
     >
       {percent}
     </Button>
