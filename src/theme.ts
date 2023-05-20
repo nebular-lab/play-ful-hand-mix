@@ -16,6 +16,7 @@ export const theme = extendTheme({
     call: '#62E45A',
     check: '#62E45A',
     fold: '#0A92CF',
+    allin: '#e6b422',
     text: {
       main: '#f4f4f4',
       unsetRange: '#616161',
