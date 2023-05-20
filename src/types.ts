@@ -80,14 +80,22 @@ export type HandActionsType = z.infer<typeof HandActionsSchema>;
 
 export const HandSquareSchema = z.object({
   suit: suitTypeSchema,
-  hands:z.array(HandActionsSchema)
+  hands: z.array(HandActionsSchema),
 });
 export type HandSquareType = z.infer<typeof HandSquareSchema>;
 
 export const HandRangeSchema = z.array(z.array(HandSquareSchema));
 export type HandRangeType = z.infer<typeof HandRangeSchema>;
 
-export const HandRangeObjectSchema = z.record(z.record(z.record(z.record(z.number()))));
+export const PairHandRangeSchema = z.object({
+  OOP: HandRangeSchema,
+  IP: HandRangeSchema,
+});
+export type PairHandRangeType = z.infer<typeof PairHandRangeSchema>;
+
+export const HandRangeObjectSchema = z.record(
+  z.record(z.record(z.record(z.number()))),
+);
 export type HandRangeObjectType = z.infer<typeof HandRangeObjectSchema>;
 
 export const HandKindSchema = z.object({
@@ -122,13 +130,13 @@ export type DrawKindType = z.infer<typeof DrawKindSchema>;
 export interface StreetNodeType {
   id: string;
   type: 'StreetNode';
-  board: CardType[];
-  handRange: HandRangeType;
+  handRanges: PairHandRangeType;
   child?: CardNodeType[];
 }
 
 export interface CardNodeType {
   id: string;
+  isDisplay: boolean;
   cards: CardType[];
   child?: PositionNodeType;
 }
@@ -137,16 +145,18 @@ export interface PositionNodeType {
   id: string;
   type: 'PositionNode';
   position: PositionType;
-  handRange: HandRangeType;
-  actionIDs: number[];
-  handKind: HandKindType;
-  drawKind: DrawKindType;
+  handRanges: PairHandRangeType;
+  moves: MoveType[];
+  //handKind: HandKindType;
+  //drawKind: DrawKindType;
   board: CardType[];
   child?: ActionNodeType[];
 }
 
 export interface ActionNodeType {
   id: string;
+  isDisplay: boolean;
+  isSelected: boolean;
   move: MoveType;
   child?: StreetNodeType | PositionNodeType;
 }
@@ -160,36 +170,44 @@ export interface HandNodeType {
   child?: PositionNodeType;
 }
 
-export const HandNodeSchema: z.ZodSchema<Omit<HandNodeType, 'id' | 'child'>> = z.object({
-  userName: z.string(),
-  iconURL: z.string(),
-  title: z.string(),
-  createdAt: z.number(),
-  updatedAt: z.number(),
-});
+export const HandNodeSchema: z.ZodSchema<Omit<HandNodeType, 'id' | 'child'>> =
+  z.object({
+    userName: z.string(),
+    iconURL: z.string(),
+    title: z.string(),
+    createdAt: z.number(),
+    updatedAt: z.number(),
+  });
 
-export const StreetNodeSchema: z.ZodSchema<Omit<StreetNodeType, 'id' | 'child'>> = z.object({
+export const StreetNodeSchema: z.ZodSchema<
+  Omit<StreetNodeType, 'id' | 'child'>
+> = z.object({
   type: z.literal('StreetNode'),
-  handRange: HandRangeSchema,
+  handRanges: PairHandRangeSchema,
   board: z.array(CardTypeSchema),
-  pot: z.number(),
-  stack: z.number(),
 });
 
 export const CardNodeSchema = z.object({
+  isDisplay: z.boolean(),
   cards: z.array(CardTypeSchema),
 });
 
-export const PositionNodeSchema: z.ZodSchema<Omit<PositionNodeType, 'id' | 'child'>> = z.object({
+export const PositionNodeSchema: z.ZodSchema<
+  Omit<PositionNodeType, 'id' | 'child'>
+> = z.object({
   type: z.literal('PositionNode'),
   position: PositionTypeSchema,
-  actionIDs: z.array(z.number()),
-  handKind: HandKindSchema,
-  drawKind: DrawKindSchema,
+  moves: z.array(MoveTypeSchema),
+  //handKind: HandKindSchema,
+  //drawKind: DrawKindSchema,
   board: z.array(CardTypeSchema),
-  handRange: HandRangeSchema,
+  handRanges: PairHandRangeSchema,
 });
 
-export const ActionNodeSchema: z.ZodSchema<Omit<ActionNodeType, 'id' | 'child'>> = z.object({
+export const ActionNodeSchema: z.ZodSchema<
+  Omit<ActionNodeType, 'id' | 'child'>
+> = z.object({
+  isDisplay: z.boolean(),
+  isSelected: z.boolean(),
   move: MoveTypeSchema,
 });

@@ -1,4 +1,10 @@
-import { HandRangeType, HandSquareType } from '@/types';
+import {
+  HandRangeType,
+  HandSquareType,
+  PositionNodeType,
+  StreetNodeType,
+} from '@/types';
+import { randomUUID } from 'crypto';
 
 const pc: HandSquareType = {
   suit: 'pair',
@@ -98,7 +104,6 @@ export const defaultHandRange: HandRangeType = [
   [os, os, os, os, os, os, os, os, os, os, os, os, pc],
 ];
 
-
 export const cardNums = {
   A: 0,
   K: 1,
@@ -114,4 +119,38 @@ export const cardNums = {
   '3': 11,
   '2': 12,
 };
-export const cardStrings = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
+export const cardStrings = [
+  'A',
+  'K',
+  'Q',
+  'J',
+  'T',
+  '9',
+  '8',
+  '7',
+  '6',
+  '5',
+  '4',
+  '3',
+  '2',
+];
+
+export const defaultHandNode: PositionNodeType = {
+  id: '1',
+  type: 'PositionNode',
+  position: 'OOP',
+  handRanges: {
+    OOP: defaultHandRange,
+    IP: defaultHandRange,
+  },
+  moves: ['PREFLOP', 'FOLD'],
+  board: [],
+};
+const StreetNode: StreetNodeType = {
+  id: '1',
+  type: 'StreetNode',
+  handRanges: {
+    OOP: defaultHandRange,
+    IP: defaultHandRange,
+  },
+};

@@ -4,8 +4,9 @@ import {
   HandActionsType,
   HandRangeType,
   HandSquareType,
+  PositionNodeType,
 } from './types';
-import { defaultHandRange } from './const';
+import { defaultHandNode, defaultHandRange } from './const';
 
 export const nodePathState = atom<Array<string | number>>({
   key: 'handNodePathState',
@@ -30,4 +31,8 @@ export const drawActionsState = atom<Array<ActionType>>({
     { move: 'BET L', percent: 60 },
     { move: 'CHECK', percent: 0 },
   ],
+});
+export const handNodeState = atom<PositionNodeType>({
+  key: 'handNodeState',
+  default: defaultHandNode,
 });

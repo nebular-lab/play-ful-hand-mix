@@ -17,6 +17,12 @@ export const theme = extendTheme({
     check: '#62E45A',
     fold: '#0A92CF',
     allin: '#e6b422',
+    card: {
+      d: '#283AC4',
+      s: '#4F4F4F',
+      c: '#08AB27',
+      h: '#8B0901',
+    },
     text: {
       main: '#f4f4f4',
       unsetRange: '#616161',
