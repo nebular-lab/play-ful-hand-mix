@@ -1,11 +1,11 @@
 import DrawActionGroupContainer from '@/feature/DrawActionGroup/DrawActionGoupContainer';
 import { Meta, StoryObj } from '@storybook/react';
-import EditPage from '.';
+import EditPageContainer from './EditPageContainer';
 
-type Story = StoryObj<typeof EditPage>;
+type Story = StoryObj<typeof EditPageContainer>;
 
-const meta: Meta<typeof EditPage> = {
-  component: EditPage,
+const meta: Meta<typeof EditPageContainer> = {
+  component: EditPageContainer,
   argTypes: {},
 };
 export default meta;
