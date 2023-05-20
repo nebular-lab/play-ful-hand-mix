@@ -1,33 +1,24 @@
+import { getMoveColor } from '@/lib/getMoveColor';
+import { getGridNum } from '@/lib/getGridNum';
 import { ActionType, HandActionsType, suitType } from '@/types';
 import { Box, Flex, SimpleGrid, Text, grid } from '@chakra-ui/react';
 import { FC, memo } from 'react';
 type Props = {
   handleDraw: () => void;
-  suit: suitType;
   text: string;
   hands: HandActionsType[];
   isExist: boolean;
+  gridNum: number;
 };
 const HandSquare: FC<Props> = (props) => {
-  const { handleDraw, suit, text, hands, isExist } = props;
-  const boxSize = '48px';
+  const { handleDraw, text, hands, isExist, gridNum } = props;
+  const w = '60px';
+  const h = '52px';
   const textColor = isExist ? 'white' : 'gray.400';
-  let gridNum: number;
-  switch (suit) {
-    case 'pair':
-      gridNum = 6;
-      break;
-    case 'suited':
-      gridNum = 4;
-      break;
-    case 'offsuited':
-      gridNum = 12;
-      break;
-  }
   return (
     <Flex
-      w={boxSize}
-      h={boxSize}
+      w={w}
+      h={h}
       bg={'main'}
       position={'relative'}
       _hover={{ cursor: 'pointer' }}
@@ -39,7 +30,7 @@ const HandSquare: FC<Props> = (props) => {
     >
       <SimpleGrid columns={gridNum} position={'absolute'} w={'full'} h={'full'}>
         {hands.map((hand, index) => {
-          return <HandStripe key={index} actions={hand.actions} suit={suit} />;
+          return <HandStripe key={index} actions={hand.actions} />;
         })}
       </SimpleGrid>
       <Text position={'absolute'} userSelect={'none'} color={textColor}>
@@ -64,41 +55,14 @@ const Mask = () => {
 };
 type HandStripeProps = {
   actions: ActionType[];
-  suit: suitType;
 };
 const HandStripe: FC<HandStripeProps> = (props) => {
-  const { actions, suit } = props;
+  const { actions } = props;
 
   return (
     <Flex direction={'column-reverse'} w={'full'} h={'full'}>
       {actions.map((action, index) => {
-        let bg = 'main';
-        switch (action.move) {
-          case 'FOLD':
-            bg = 'fold';
-            break;
-          case 'CALL':
-            bg = 'call';
-            break;
-          case 'RAISE':
-            bg = 'raise';
-            break;
-          case 'ALLIN':
-            bg = 'allin';
-            break;
-          case 'CHECK':
-            bg = 'check';
-            break;
-          case 'BET S':
-            bg = 'betS';
-            break;
-          case 'BET M':
-            bg = 'betM';
-            break;
-          case 'BET L':
-            bg = 'betL';
-            break;
-        }
+        let bg = getMoveColor(action.move);
         return <Box key={index} w={'full'} h={`${action.percent}%`} bg={bg}></Box>;
       })}
     </Flex>

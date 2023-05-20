@@ -16,14 +16,14 @@ const preview: Preview = {
       theme,
     },
     layout: 'fullscreen',
-    decorators: [
-      (Story) => (
-        <RecoilRoot>
-          <Story />
-        </RecoilRoot>
-      ),
-    ],
   },
+  decorators: [
+    (Story) => (
+      <RecoilRoot>
+        <Story />
+      </RecoilRoot>
+    ),
+  ],
 };
 
 export default preview;

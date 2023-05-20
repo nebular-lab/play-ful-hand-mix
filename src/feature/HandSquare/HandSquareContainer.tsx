@@ -5,6 +5,8 @@ import { cardStrings } from '@/const';
 import { useHandRange } from '@/hooks/useHandRange';
 import { useRecoilState } from 'recoil';
 import { handRangeState } from '@/store';
+import { getGridNum } from '@/lib/getGridNum';
+import { getCardText } from '@/lib/getCardText';
 
 type Props = {
   row: number;
@@ -16,20 +18,13 @@ const HandSquareContainer: FC<Props> = (props) => {
   const { drawMatrix } = useHandRange();
   const [handSquare] = useRecoilState(handRangeState({ row, col }));
   const suit = handSquare.suit;
-  let text = '';
-  if (suit === 'pair') {
-    text = `${cardStrings[row]}${cardStrings[col]}`;
-  } else if (suit === 'suited') {
-    text = `${cardStrings[row]}${cardStrings[col]}s`;
-  } else if (suit === 'offsuited') {
-    text = `${cardStrings[col]}${cardStrings[row]}o`;
-  }
-
+  const CardText = getCardText(row, col, suit);
+  const gridNum = getGridNum(suit);
   return (
     <HandSquare
       handleDraw={() => drawMatrix(row, col)}
-      suit={suit}
-      text={text}
+      gridNum={gridNum}
+      text={CardText}
       isExist={true}
       hands={handSquare.hands}
     />

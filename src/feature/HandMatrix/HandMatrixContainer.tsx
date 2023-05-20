@@ -5,6 +5,6 @@ import HandMatrix from '.';
 
 
 export const HandMatrixContainer = () => {
-  console.log('HandMatrixContainer');
+  
   return <HandMatrix  />;
 };

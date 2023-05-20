@@ -9,7 +9,7 @@ export default meta;
 export const Default: Story = {
   args: {
     handleDraw: () => {},
-    suit: 'pair',
+    gridNum: 6,
     text: 'AA',
     isExist: true,
     hands: [
