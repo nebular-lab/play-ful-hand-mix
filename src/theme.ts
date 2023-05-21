@@ -23,6 +23,7 @@ export const theme = extendTheme({
       c: '#08AB27',
       h: '#8B0901',
     },
+    accentOrange: '#F06200',
     text: {
       main: '#f4f4f4',
       unsetRange: '#616161',

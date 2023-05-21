@@ -4,7 +4,6 @@ export const updatedDrawActions = (
   drawActions: ActionType[],
   inputAction: ActionType,
 ) => {
-  console.log('updatedDrawActions');
   const inputPercent = inputAction.percent;
   const settedPercent =
     drawActions.find((drawAction) => drawAction.move === inputAction.move)

@@ -6,10 +6,11 @@ type Props = {
   w: string;
   h: string;
   bg: string;
+  borderColor?: string;
   onClick?: () => void;
 };
 const Tag: FC<Props> = (props) => {
-  const { text, w, h, bg, onClick } = props;
+  const { text, w, h, bg, borderColor = 'white', onClick } = props;
   return (
     <Button
       w={w}
@@ -18,12 +19,13 @@ const Tag: FC<Props> = (props) => {
       _hover={{ bg: bg }}
       rounded={'sm'}
       border={'2px'}
+      borderColor={borderColor}
       alignItems={'center'}
       justifyContent={'center'}
       onClick={onClick}
       variant={'outline'}
     >
-      <Text fontWeight={'bold'} textColor={'white'} fontSize={'2xl'}>
+      <Text fontWeight={'bold'} textColor={'white'} fontSize={'lg'}>
         {text}
       </Text>
     </Button>

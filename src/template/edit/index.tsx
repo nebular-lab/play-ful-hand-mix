@@ -1,5 +1,9 @@
 import DrawActionGroupContainer from '@/feature/DrawActionGroup/DrawActionGoupContainer';
 import { HandMatrixContainer } from '@/feature/HandMatrix/HandMatrixContainer';
+import HandRegisterButton from '@/feature/HandRegisterButton';
+import HandRegisterButtonContainer from '@/feature/HandRegisterButton/HandRegisterButtonContainer';
+import HandTree from '@/feature/HandTree';
+import HandTreeContainer from '@/feature/HandTree/HandTreeContainer';
 import { Flex } from '@chakra-ui/react';
 import { FC, MutableRefObject, memo } from 'react';
 
@@ -22,10 +26,12 @@ const EditPage: FC<Props> = (props) => {
       <Flex w={'full'} h={20} bg={'gray.100'}>
         ヘッダー
       </Flex>
+      <HandTreeContainer />
       <Flex w={'full'} h={'full'} bg={'main'} gap={2}>
-        <HandMatrixContainer isMouseDownRef={isMouseDownRef}/>
+        <HandMatrixContainer isMouseDownRef={isMouseDownRef} />
         <Flex w={'full'} mt={1}>
           <DrawActionGroupContainer />
+          <HandRegisterButtonContainer  />
         </Flex>
       </Flex>
     </Flex>

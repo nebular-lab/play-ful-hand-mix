@@ -1,5 +1,6 @@
 import { sumActionPercent } from '@/lib/sumActionPercent';
 import { drawActionsState, handRangeState } from '@/store';
+import { HandRangeType, MoveType } from '@/types';
 import { produce } from 'immer';
 import { useRecoilCallback } from 'recoil';
 
@@ -26,5 +27,17 @@ export const useHandRange = () => {
       },
     [],
   );
-  return { drawMatrix };
+  const setHandRange = useRecoilCallback(
+    ({ set }) =>
+      (handRange: HandRangeType) => {
+        handRange.forEach((row, rowIndex) => {
+          row.forEach((col, colIndex) => {
+            set(handRangeState({ row: rowIndex, col: colIndex }), col);
+          });
+        });
+      },
+    [],
+  );
+
+  return { drawMatrix, setHandRange };
 };

@@ -117,6 +117,9 @@ export const defaultHandNode: PositionNodeType = {
     OOP: defaultHandRange,
     IP: defaultHandRange,
   },
-  moves: ['PREFLOP', 'FOLD'],
+  actions: [
+    { move: 'PREFLOP', percent: 100 },
+    { move: 'FOLD', percent: 0 },
+  ],
   board: [],
 };

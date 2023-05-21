@@ -13,7 +13,12 @@ export const getCardnode = (
     child: {
       position: 'OOP',
       type: 'PositionNode',
-      moves: ['BET S', 'BET M', 'BET L', 'CHECK'],
+      actions: [
+        { move: 'BET L', percent: 100 },
+        { move: 'BET M', percent: 0 },
+        { move: 'BET S', percent: 0 },
+        { move: 'CHECK', percent: 0 },
+      ],
 
       board: [...boardCards, ...addCards],
       handRanges: {

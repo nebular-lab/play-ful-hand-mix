@@ -8,6 +8,7 @@ type Props = {
 
 const StreetTag = (props: Props) => {
   const { onClick, isSelected } = props;
+  console.log('StreetTag')
   return (
     <Flex
       w={8}

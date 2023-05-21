@@ -1,16 +1,20 @@
 import { atom, atomFamily } from 'recoil';
 import {
   ActionType,
+  CardType,
   HandRangeType,
   HandSquareType,
+  PairHandRangeType,
   PositionNodeType,
+  PositionType,
 } from './types';
 import { defaultHandNode, defaultHandRange } from './const';
 
 export const nodePathState = atom<Array<string | number>>({
   key: 'handNodePathState',
-  default: ['child'],
+  default: [],
 });
+
 export const handRangeState = atomFamily<
   HandSquareType,
   { row: number; col: number }
@@ -18,6 +22,22 @@ export const handRangeState = atomFamily<
   key: 'handRangeState',
   default: (index) => defaultHandRange[index.row][index.col],
 });
+
+export const handRangePairState = atom<PairHandRangeType>({
+  key: 'handRangePairState',
+  default: { OOP: defaultHandRange, IP: defaultHandRange },
+});
+
+export const boardState = atom<Array<CardType>>({
+  key: 'boardState',
+  default: [],
+});
+
+export const positionState = atom<PositionType>({
+  key: 'positionState',
+  default: 'OOP',
+});
+
 export const includeSuitState = atom<Array<number>>({
   key: 'includeSuitState',
   default: [0, 1, 2, 3],
@@ -25,10 +45,8 @@ export const includeSuitState = atom<Array<number>>({
 export const drawActionsState = atom<Array<ActionType>>({
   key: 'drawActionsState',
   default: [
-    { move: 'BET S', percent: 40 },
-    { move: 'BET M', percent: 0 },
-    { move: 'BET L', percent: 60 },
-    { move: 'CHECK', percent: 0 },
+    { move: 'PREFLOP', percent: 100 },
+    { move: 'FOLD', percent: 0 },
   ],
 });
 export const handNodeState = atom<PositionNodeType>({

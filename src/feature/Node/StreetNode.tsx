@@ -4,14 +4,17 @@ import { Flex, useDisclosure } from '@chakra-ui/react';
 import _ from 'lodash';
 import CardNode from './CardNode';
 import { memo } from 'react';
+import { useHandNodePath } from '@/hooks/useHandNodePath';
 
 type Props = StreetNodeType & { path: Array<number | string> };
 
 const StreetNode = (props: Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { path, child } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { setNodePath } = useHandNodePath(path);
   const onClick = () => {
     onOpen();
+    setNodePath(path);
   };
   return (
     <Flex gap={1}>

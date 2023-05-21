@@ -9,12 +9,12 @@ import PositionNode from './PositionNode';
 type Props = ActionNodeType & { path: Array<number | string> };
 
 export const ActionNode: FC<Props> = (props) => {
-  const { path, move, child, isSelected } = props;
+  const { path, move, child } = props;
   const childType = child?.type;
   return (
     <Flex gap={1}>
       <TagContainer type={'Move'} move={move} />
-      {childType === 'StreetNode' && isSelected && child && (
+      {childType === 'StreetNode' && child && (
         <StreetNode
           type="StreetNode"
           path={[...path, 'child']}
@@ -30,7 +30,7 @@ export const ActionNode: FC<Props> = (props) => {
           position={child.position}
           child={child.child}
           board={child.board}
-          moves={child.moves}
+          actions={child.actions}
           handRanges={child.handRanges}
         />
       )}

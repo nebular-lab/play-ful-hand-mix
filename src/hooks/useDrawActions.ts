@@ -1,6 +1,6 @@
 import { updatedDrawActions } from '@/lib/updatedDrawActions';
 import { drawActionsState } from '@/store';
-import { ActionType } from '@/types';
+import { ActionType, MoveType } from '@/types';
 import { useRecoilCallback } from 'recoil';
 
 // いらないかも
@@ -13,5 +13,13 @@ export const useDrawActions = () => {
       },
     [],
   );
-  return { setDrawActions };
+  const resetDrawActions = useRecoilCallback(
+    ({ set }) =>
+      (actions: ActionType[]) => {
+        set(drawActionsState, actions);
+      },
+    [],
+  );
+
+  return { setDrawActions,resetDrawActions };
 };

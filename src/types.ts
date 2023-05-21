@@ -138,7 +138,7 @@ export interface PositionNodeType {
   type: 'PositionNode';
   position: PositionType;
   handRanges: PairHandRangeType;
-  moves: MoveType[];
+  actions: ActionType[];
   //handKind: HandKindType;
   //drawKind: DrawKindType;
   board: CardType[];
@@ -188,7 +188,7 @@ export const PositionNodeSchema: z.ZodSchema<
 > = z.object({
   type: z.literal('PositionNode'),
   position: PositionTypeSchema,
-  moves: z.array(MoveTypeSchema),
+  actions: z.array(ActionTypeSchema),
   //handKind: HandKindSchema,
   //drawKind: DrawKindSchema,
   board: z.array(CardTypeSchema),
