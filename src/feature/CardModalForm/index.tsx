@@ -30,13 +30,15 @@ const CardModalForm = (props: Props) => {
   const marks: CardMarkType[] = ['s', 'h', 'd', 'c'];
   return (
     <Flex p={5} gap={2}>
-      <Flex direction={'column'} gap={2}>
+      <Flex direction={'column'} gap={4}>
         <Flex h={'10'} gap={1}>
           {selectedCards.map((card) => {
             return (
               <CardContainer
                 key={`${card.mark} ${card.num}`}
                 card={{ num: card.num, mark: card.mark }}
+                onClick={() => onCardClick({ num: card.num, mark: card.mark })}
+                size={'m'}
               />
             );
           })}
@@ -50,6 +52,7 @@ const CardModalForm = (props: Props) => {
                     key={num}
                     card={{ num, mark }}
                     onClick={() => onCardClick({ num, mark })}
+                    size={'m'}
                   />
                 ))}
               </Flex>

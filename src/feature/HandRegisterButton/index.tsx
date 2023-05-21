@@ -6,7 +6,7 @@ type Props = {
 const HandRegisterButton = (props: Props) => {
   const { onClick } = props;
   return (
-    <Button colorScheme={'orange'} onClick={onClick}>
+    <Button colorScheme={'whatsapp'} onClick={onClick}>
       レンジ登録
     </Button>
   );

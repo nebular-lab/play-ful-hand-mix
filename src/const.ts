@@ -9,13 +9,13 @@ import { randomUUID } from 'crypto';
 const pc: HandSquareType = {
   suit: 'pair',
   hands: [
-    { isDeleted: true, actions: [{ move: 'FOLD', percent: 100 }] },
-
     { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
 
     { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
 
-    { isDeleted: true, actions: [{ move: 'FOLD', percent: 100 }] },
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
 
     { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
 

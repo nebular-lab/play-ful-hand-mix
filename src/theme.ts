@@ -17,6 +17,7 @@ export const theme = extendTheme({
     check: '#62E45A',
     fold: '#0A92CF',
     allin: '#e6b422',
+    preflop:'#e6b422',
     card: {
       d: '#283AC4',
       s: '#4F4F4F',

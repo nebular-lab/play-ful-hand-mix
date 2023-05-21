@@ -17,8 +17,6 @@ const TagContainer: FC<Props> = (props) => {
     return (
       <Tag
         text={position}
-        w={'50px'}
-        h={'30px'}
         bg="main"
         onClick={onClick}
         borderColor={borderColor}
@@ -26,15 +24,7 @@ const TagContainer: FC<Props> = (props) => {
     );
   } else {
     const bg = getMoveColor(move);
-    return (
-      <Tag
-        text={move ?? 'ERR'}
-        w={'50px'}
-        h={'30px'}
-        bg={bg}
-        onClick={onClick}
-      />
-    );
+    return <Tag text={move ?? 'ERR'} bg={bg} onClick={onClick} />;
   }
 };
 export default memo(TagContainer);

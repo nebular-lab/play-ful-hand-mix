@@ -23,15 +23,17 @@ const EditPage: FC<Props> = (props) => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
-      <Flex w={'full'} h={20} bg={'gray.100'}>
+      <Flex w={'full'} h={14} bg={'gray.100'}>
         ヘッダー
       </Flex>
-      <HandTreeContainer />
+      <Flex py={4} px={2}>
+        <HandTreeContainer />
+      </Flex>
       <Flex w={'full'} h={'full'} bg={'main'} gap={2}>
         <HandMatrixContainer isMouseDownRef={isMouseDownRef} />
-        <Flex w={'full'} mt={1}>
+        <Flex w={'full'} gap={2} mt={1} direction={'column'}>
+          <HandRegisterButtonContainer />
           <DrawActionGroupContainer />
-          <HandRegisterButtonContainer  />
         </Flex>
       </Flex>
     </Flex>

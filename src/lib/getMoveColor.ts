@@ -18,6 +18,6 @@ export const getMoveColor = (move: MoveType) => {
     case 'BET L':
       return 'betL';
     case 'PREFLOP':
-      return 'betS';
+      return 'preflop';
   }
 };

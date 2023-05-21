@@ -3,32 +3,28 @@ import { FC, memo } from 'react';
 
 type Props = {
   text: string;
-  w: string;
-  h: string;
   bg: string;
   borderColor?: string;
   onClick?: () => void;
 };
 const Tag: FC<Props> = (props) => {
-  const { text, w, h, bg, borderColor = 'white', onClick } = props;
+  const { text, bg, borderColor = 'white', onClick } = props;
   return (
-    <Button
-      w={w}
-      h={h}
+    <Flex
+      w={20}
+      h={10}
       bg={bg}
       _hover={{ bg: bg }}
-      rounded={'sm'}
+      rounded={'md'}
       border={'2px'}
       borderColor={borderColor}
       alignItems={'center'}
       justifyContent={'center'}
       onClick={onClick}
-      variant={'outline'}
+      cursor={'pointer'}
     >
-      <Text fontWeight={'bold'} textColor={'white'} fontSize={'lg'}>
-        {text}
-      </Text>
-    </Button>
+      <Text textColor={'white'}>{text}</Text>
+    </Flex>
   );
 };
 export default memo(Tag);

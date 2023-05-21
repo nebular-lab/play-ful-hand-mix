@@ -4,21 +4,26 @@ import { FC, memo } from 'react';
 type Props = {
   bg: string;
   text: string;
+  w: number;
+  h: number;
+  textSize: string;
+  rounded: string;
   onClick?: () => void;
 };
 const Card: FC<Props> = (props) => {
-  const { bg, text, onClick } = props;
+  const { bg, text, textSize, onClick, w, h, rounded } = props;
   return (
     <Flex
       bg={bg}
-      w={'full'}
-      h={'full'}
-      rounded={'md'}
+      w={w}
+      h={h}
+      rounded={rounded}
       alignItems={'center'}
       justifyContent={'center'}
       onClick={onClick}
+      cursor={(onClick && 'pointer') || 'default'}
     >
-      <Text fontWeight={'bold'} textColor={'white'} fontSize={'2xl'}>
+      <Text textColor={'white'} fontSize={textSize}>
         {text}
       </Text>
     </Flex>

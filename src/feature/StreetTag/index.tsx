@@ -8,11 +8,10 @@ type Props = {
 
 const StreetTag = (props: Props) => {
   const { onClick, isSelected } = props;
-  console.log('StreetTag')
   return (
     <Flex
-      w={8}
-      h={8}
+      w={10}
+      h={10}
       border={'2px'}
       bg={'gray.200'}
       borderColor={isSelected ? 'violet' : 'stroke'}

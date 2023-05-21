@@ -10,9 +10,18 @@ type Props = {
 const CardTag = (props: Props) => {
   const { cards } = props;
   return (
-    <Flex gap={1} h={'50px'} border={'2px'} borderColor={'white'}>
+    <Flex
+      gap={1}
+      h={10}
+      px={2}
+      rounded={'md'}
+      border={'2px'}
+      borderColor={'white'}
+      justifyContent={'center'}
+      alignItems={'center'}
+    >
       {cards.map((card, index) => {
-        return <CardContainer key={index} card={card} />;
+        return <CardContainer key={index} card={card} size={'s'} />;
       })}
     </Flex>
   );

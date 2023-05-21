@@ -21,6 +21,7 @@ import { getNextHandRange } from '@/lib/getNextHandRange';
 import { defaultHandNode, defaultHandRange } from '@/const';
 import { getHandRange } from '@/lib/getHandRange';
 import { getMoves } from '@/lib/getMoves';
+import next from 'next/types';
 
 export const useHandNode = () => {
   const addStreetCard = useRecoilCallback(
@@ -77,17 +78,18 @@ export const useHandNode = () => {
           moves.forEach((move) => {
             if (move === 'FOLD') return;
             // 全部CHECKに設定
+            console.log(handRange)
             const nextHandRange = getNextHandRange(handRange, move);
+            console.log(nextHandRange);
             const deletedNextHandRange = deletedHandRange(nextHandRange, board);
-            console.log(move, position);
-            actionNodes.push(
-              getActionNode(
-                { ...handRanges, [position]: deletedNextHandRange },
-                move,
-                position,
-                board,
-              ),
+            console.log(deletedNextHandRange);
+            const { actionNode, nextPosition } = getNextState(
+              { ...handRanges, [position]: deletedNextHandRange },
+              move,
+              position,
+              board,
             );
+            actionNodes.push(actionNode);
           });
           positionNode.child = actionNodes;
         });
@@ -99,7 +101,7 @@ export const useHandNode = () => {
   return { addStreetCard, registerHandRange };
 };
 
-const getActionNode = (
+const getNextState = (
   handRanges: PairHandRangeType,
   move: MoveType,
   position: PositionType,
@@ -110,6 +112,7 @@ const getActionNode = (
     isDisplay: true,
     isSelected: false,
   };
+  let nextPosition: PositionType;
   if (move === 'PREFLOP' && position === 'OOP') {
     actionNode.child = {
       type: 'PositionNode',
@@ -121,18 +124,21 @@ const getActionNode = (
       board: [],
       handRanges: handRanges,
     };
+    nextPosition = 'IP';
   } else if (move === 'PREFLOP' && position === 'IP') {
     actionNode.child = {
       type: 'StreetNode',
       board: [],
       handRanges: handRanges,
     };
+    nextPosition = 'OOP';
   } else if (move === 'CALL' && position == 'OOP') {
     actionNode.child = {
       type: 'StreetNode',
       board: board,
       handRanges: handRanges,
     };
+    nextPosition = 'OOP';
   } else if (position == 'OOP') {
     let actions: ActionType[] = [];
     if (move === 'CHECK') {
@@ -168,12 +174,14 @@ const getActionNode = (
       board: board,
       handRanges: handRanges,
     };
+    nextPosition = 'IP';
   } else if (position == 'IP' && (move == 'CALL' || move == 'CHECK')) {
     actionNode.child = {
       type: 'StreetNode',
       board: board,
       handRanges: handRanges,
     };
+    nextPosition = 'OOP';
   } else if (
     position == 'IP' &&
     (move == 'ALLIN' ||
@@ -208,13 +216,15 @@ const getActionNode = (
       board: board,
       handRanges: handRanges,
     };
+    nextPosition = 'OOP';
   } else {
     actionNode.child = {
       type: 'StreetNode',
       board: board,
       handRanges: handRanges,
     };
+    nextPosition = 'OOP';
   }
-  console.log(actionNode);
-  return actionNode;
+
+  return { actionNode, nextPosition };
 };
