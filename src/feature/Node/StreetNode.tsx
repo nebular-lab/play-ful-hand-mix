@@ -5,6 +5,7 @@ import _ from 'lodash';
 import CardNode from './CardNode';
 import { memo } from 'react';
 import { useHandNodePath } from '@/hooks/useHandNodePath';
+import { CardModal } from '../CardModal';
 
 type Props = StreetNodeType & { path: Array<number | string> };
 
@@ -22,6 +23,7 @@ const StreetNode = (props: Props) => {
         onClick={onClick}
         isSelected={_.isEqual(path, path)}
       />
+      <CardModal isOpen={isOpen} onClose={onClose} />
       {child?.map((cardNode, index) => {
         if (cardNode.isDisplay) {
           return (
