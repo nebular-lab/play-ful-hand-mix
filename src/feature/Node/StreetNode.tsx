@@ -2,7 +2,8 @@ import { StreetNodeType } from '@/types';
 import StreetTagContainer from '../StreetTag/StreetTagContainer';
 import { Flex, useDisclosure } from '@chakra-ui/react';
 import _ from 'lodash';
-import { CardNode } from './CardNode';
+import CardNode from './CardNode';
+import { memo } from 'react';
 
 type Props = StreetNodeType & { path: Array<number | string> };
 
@@ -18,11 +19,18 @@ const StreetNode = (props: Props) => {
         onClick={onClick}
         isSelected={_.isEqual(path, path)}
       />
-      {child?.map((cardNode,index) => {
+      {child?.map((cardNode, index) => {
         if (cardNode.isDisplay) {
-          return <CardNode {...cardNode} path={[...path, 'child',index]} />;
+          return (
+            <CardNode
+              key={index}
+              {...cardNode}
+              path={[...path, 'child', index]}
+            />
+          );
         }
       })}
     </Flex>
   );
 };
+export default memo(StreetNode);

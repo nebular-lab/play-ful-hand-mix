@@ -1,7 +1,6 @@
 import { atom, atomFamily } from 'recoil';
 import {
   ActionType,
-  HandActionsType,
   HandRangeType,
   HandSquareType,
   PositionNodeType,

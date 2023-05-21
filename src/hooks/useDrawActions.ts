@@ -1,6 +1,6 @@
 import { updatedDrawActions } from '@/lib/updatedDrawActions';
 import { drawActionsState } from '@/store';
-import { ActionType, HandActionsType } from '@/types';
+import { ActionType } from '@/types';
 import { useRecoilCallback } from 'recoil';
 
 // いらないかも

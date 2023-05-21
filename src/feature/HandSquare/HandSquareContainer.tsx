@@ -1,4 +1,4 @@
-import { HandActionsType, HandSquareType, suitType } from '@/types';
+import {  HandSquareType, suitType } from '@/types';
 import HandSquare from '.';
 import { FC, MutableRefObject, memo } from 'react';
 import { cardStrings } from '@/const';

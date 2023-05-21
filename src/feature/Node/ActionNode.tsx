@@ -3,6 +3,8 @@ import { Box, Flex } from '@chakra-ui/react';
 import { FC } from 'react';
 import Tag from '../Tag';
 import TagContainer from '../Tag/TagContainer';
+import StreetNode from './StreetNode';
+import PositionNode from './PositionNode';
 
 type Props = ActionNodeType & { path: Array<number | string> };
 
@@ -12,8 +14,26 @@ export const ActionNode: FC<Props> = (props) => {
   return (
     <Flex gap={1}>
       <TagContainer type={'Move'} move={move} />
-      {childType === 'StreetNode' && isSelected && <Box></Box>}
-      {childType === 'PositionNode' && !isSelected && <Box></Box>}
+      {childType === 'StreetNode' && isSelected && child && (
+        <StreetNode
+          type="StreetNode"
+          path={[...path, 'child']}
+          board={child.board}
+          handRanges={child.handRanges}
+          child={child.child}
+        />
+      )}
+      {childType === 'PositionNode' && child && (
+        <PositionNode
+          type="PositionNode"
+          path={[...path, 'child']}
+          position={child.position}
+          child={child.child}
+          board={child.board}
+          moves={child.moves}
+          handRanges={child.handRanges}
+        />
+      )}
     </Flex>
   );
 };

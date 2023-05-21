@@ -2,10 +2,11 @@ import { CardNodeType } from '@/types';
 import { Flex } from '@chakra-ui/react';
 import CardTagContainer from '../CardTag/CardTagContainer';
 import PositionNode from './PositionNode';
+import { memo } from 'react';
 
 type Props = CardNodeType & { path: Array<number | string> };
 
-export const CardNode = (props: Props) => {
+const CardNode = (props: Props) => {
   const { path, cards, child } = props;
   return (
     <Flex gap={1}>
@@ -14,3 +15,5 @@ export const CardNode = (props: Props) => {
     </Flex>
   );
 };
+
+export default memo(CardNode);

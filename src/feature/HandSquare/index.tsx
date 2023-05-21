@@ -1,13 +1,13 @@
 import { getMoveColor } from '@/lib/getMoveColor';
 import { getGridNum } from '@/lib/getGridNum';
-import { ActionType, HandActionsType, suitType } from '@/types';
+import { ActionType, HandType, suitType } from '@/types';
 import { Box, Flex, SimpleGrid, Text, grid } from '@chakra-ui/react';
 import { FC, MutableRefObject, memo } from 'react';
 type Props = {
   handleDraw: () => void;
   onMouseMove: () => void;
   text: string;
-  hands: HandActionsType[];
+  hands: HandType[];
   isExist: boolean;
   gridNum: number;
 };
@@ -32,7 +32,7 @@ const HandSquare: FC<Props> = (props) => {
     >
       <SimpleGrid columns={gridNum} position={'absolute'} w={'full'} h={'full'}>
         {hands.map((hand, index) => {
-          return <HandStripe key={index} actions={hand.actions} />;
+          return <HandStripe key={index} hand={hand} />;
         })}
       </SimpleGrid>
       <Text position={'absolute'} userSelect={'none'} color={textColor}>
@@ -56,16 +56,18 @@ const Mask = () => {
   );
 };
 type HandStripeProps = {
-  actions: ActionType[];
+  hand: HandType;
 };
 const HandStripe: FC<HandStripeProps> = (props) => {
-  const { actions } = props;
-
+  const { hand } = props;
+  if (hand.isDeleted) return <Box w={'full'} h={'full'} bg={'main'}></Box>;
   return (
     <Flex direction={'column-reverse'} w={'full'} h={'full'}>
-      {actions.map((action, index) => {
+      {hand.actions.map((action, index) => {
         let bg = getMoveColor(action.move);
-        return <Box key={index} w={'full'} h={`${action.percent}%`} bg={bg}></Box>;
+        return (
+          <Box key={index} w={'full'} h={`${action.percent}%`} bg={bg}></Box>
+        );
       })}
     </Flex>
   );

@@ -9,82 +9,57 @@ import { randomUUID } from 'crypto';
 const pc: HandSquareType = {
   suit: 'pair',
   hands: [
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
+    { isDeleted: true, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: true, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
   ],
 };
 const st: HandSquareType = {
   suit: 'suited',
   hands: [
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
   ],
 };
 const os: HandSquareType = {
   suit: 'offsuited',
   hands: [
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
-    {
-      actions: [{ move: 'FOLD', percent: 100 }],
-    },
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
+
+    { isDeleted: false, actions: [{ move: 'FOLD', percent: 100 }] },
   ],
 };
 
@@ -136,7 +111,6 @@ export const cardStrings = [
 ];
 
 export const defaultHandNode: PositionNodeType = {
-  id: '1',
   type: 'PositionNode',
   position: 'OOP',
   handRanges: {
@@ -145,12 +119,4 @@ export const defaultHandNode: PositionNodeType = {
   },
   moves: ['PREFLOP', 'FOLD'],
   board: [],
-};
-const StreetNode: StreetNodeType = {
-  id: '1',
-  type: 'StreetNode',
-  handRanges: {
-    OOP: defaultHandRange,
-    IP: defaultHandRange,
-  },
 };

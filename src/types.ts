@@ -53,13 +53,6 @@ export const MoveTypeSchema = z.union([
 ]);
 export type MoveType = z.infer<typeof MoveTypeSchema>;
 
-export const RegisteredActionSchema = z.object({
-  move: MoveTypeSchema,
-  id: z.number(),
-  color: z.string(),
-});
-export type RegisteredActionType = z.infer<typeof RegisteredActionSchema>;
-
 export const suitTypeSchema = z.union([
   z.literal('suited'),
   z.literal('offsuited'),
@@ -73,14 +66,15 @@ export const ActionTypeSchema = z.object({
 });
 export type ActionType = z.infer<typeof ActionTypeSchema>;
 
-export const HandActionsSchema = z.object({
+export const HandTypeSchema = z.object({
+  isDeleted: z.boolean(),
   actions: z.array(ActionTypeSchema),
 });
-export type HandActionsType = z.infer<typeof HandActionsSchema>;
+export type HandType = z.infer<typeof HandTypeSchema>;
 
 export const HandSquareSchema = z.object({
   suit: suitTypeSchema,
-  hands: z.array(HandActionsSchema),
+  hands: z.array(HandTypeSchema),
 });
 export type HandSquareType = z.infer<typeof HandSquareSchema>;
 
@@ -128,21 +122,19 @@ export const DrawKindSchema = z.object({
 export type DrawKindType = z.infer<typeof DrawKindSchema>;
 
 export interface StreetNodeType {
-  id: string;
   type: 'StreetNode';
+  board: CardType[];
   handRanges: PairHandRangeType;
   child?: CardNodeType[];
 }
 
 export interface CardNodeType {
-  id: string;
   isDisplay: boolean;
   cards: CardType[];
   child?: PositionNodeType;
 }
 
 export interface PositionNodeType {
-  id: string;
   type: 'PositionNode';
   position: PositionType;
   handRanges: PairHandRangeType;
@@ -154,7 +146,6 @@ export interface PositionNodeType {
 }
 
 export interface ActionNodeType {
-  id: string;
   isDisplay: boolean;
   isSelected: boolean;
   move: MoveType;
