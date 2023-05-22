@@ -73,9 +73,13 @@ const Mask = memo(() => {
     ></Flex>
   );
 });
+
+Mask.displayName = 'Mask';
+
 type HandStripeProps = {
   hand: HandType;
 };
+
 export const HandStripe: FC<HandStripeProps> = memo((props) => {
   const { hand } = props;
   if (hand.isDeleted)
@@ -91,5 +95,6 @@ export const HandStripe: FC<HandStripeProps> = memo((props) => {
     </Flex>
   );
 });
+HandStripe.displayName = 'HandStripe';
 
 export default memo(HandSquare);

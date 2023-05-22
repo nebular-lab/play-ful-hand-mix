@@ -56,3 +56,4 @@ const HandSquareContainerContainer = memo(
     );
   },
 );
+HandSquareContainerContainer.displayName = 'HandSquareContainerContainer';
