@@ -8,7 +8,7 @@ const meta: Meta<typeof HandSquare> = {
 export default meta;
 export const Default: Story = {
   args: {
-    handleDraw: () => {},
+    onMouseDown: () => {},
     gridNum: 6,
     text: 'AA',
     isExist: true,

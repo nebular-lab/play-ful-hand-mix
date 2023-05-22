@@ -59,3 +59,15 @@ export const handNodeState = atom<PositionNodeType>({
   key: 'handNodeState',
   default: defaultHandNode,
 });
+
+export const selectedHandIndexState = atom<{ row: number; col: number } | null>(
+  {
+    key: 'selectedHandIndexState',
+    default: null,
+  },
+);
+
+export const hoveredHandIndexState = atom<{ row: number; col: number }>({
+  key: 'hoveredHandIndexState',
+  default: { row: 0, col: 0 },
+});

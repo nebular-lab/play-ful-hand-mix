@@ -4,15 +4,26 @@ import { ActionType, HandType, suitType } from '@/types';
 import { Box, Flex, SimpleGrid, Text, grid } from '@chakra-ui/react';
 import { FC, MutableRefObject, memo } from 'react';
 type Props = {
-  handleDraw: () => void;
+  onMouseDown: () => void;
   onMouseMove: () => void;
+  onClick: () => void;
   text: string;
+  borderColor: string;
   hands: HandType[];
   isExist: boolean;
   gridNum: number;
 };
 const HandSquare: FC<Props> = (props) => {
-  const { handleDraw, text, hands, isExist, gridNum, onMouseMove } = props;
+  const {
+    onMouseDown,
+    text,
+    hands,
+    isExist,
+    gridNum,
+    borderColor,
+    onMouseMove,
+    onClick,
+  } = props;
   const w = '60px';
   const h = '52px';
   const textColor = isExist ? 'white' : 'gray.400';
@@ -26,10 +37,11 @@ const HandSquare: FC<Props> = (props) => {
       justifyContent={'center'}
       alignItems={'center'}
       border={'1px'}
-      borderColor={'main'}
+      borderColor={borderColor}
       boxSizing="border-box"
-      onMouseDown={handleDraw}
+      onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
+      onClick={onClick}
     >
       <SimpleGrid columns={gridNum} position={'absolute'} w={'full'} h={'full'}>
         {hands.map((hand, index) => {
@@ -61,7 +73,8 @@ type HandStripeProps = {
 };
 const HandStripe: FC<HandStripeProps> = (props) => {
   const { hand } = props;
-  if (hand.isDeleted) return <Box w={'full'} h={'full'} bg={'unsetRange'}></Box>;
+  if (hand.isDeleted)
+    return <Box w={'full'} h={'full'} bg={'unsetRange'}></Box>;
   return (
     <Flex direction={'column-reverse'} w={'full'} h={'full'}>
       {hand.actions.map((action, index) => {
