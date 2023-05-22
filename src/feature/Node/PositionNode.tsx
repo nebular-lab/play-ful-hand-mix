@@ -42,7 +42,7 @@ const PositionNode = (props: Props) => {
         onClick={onClick}
         isSelected={_.isEqual(path, nodePath)}
       />
-      <UnorderedList>
+      <Flex mx={1} >
         {child?.map((actionNode, index) => {
           if (actionNode.isDisplay) {
             return (
@@ -54,7 +54,7 @@ const PositionNode = (props: Props) => {
             );
           }
         })}
-      </UnorderedList>
+      </Flex>
     </Flex>
   );
 };

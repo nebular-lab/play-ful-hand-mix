@@ -1,6 +1,6 @@
 import { StreetNodeType } from '@/types';
 import StreetTagContainer from '../StreetTag/StreetTagContainer';
-import { Flex, useDisclosure } from '@chakra-ui/react';
+import { Flex, UnorderedList, useDisclosure } from '@chakra-ui/react';
 import _ from 'lodash';
 import CardNode from './CardNode';
 import { memo } from 'react';
@@ -24,17 +24,19 @@ const StreetNode = (props: Props) => {
         isSelected={_.isEqual(path, path)}
       />
       <CardModal isOpen={isOpen} onClose={onClose} />
-      {child?.map((cardNode, index) => {
-        if (cardNode.isDisplay) {
-          return (
-            <CardNode
-              key={index}
-              {...cardNode}
-              path={[...path, 'child', index]}
-            />
-          );
-        }
-      })}
+      <UnorderedList m={0} spacing={1}>
+        {child?.map((cardNode, index) => {
+          if (cardNode.isDisplay) {
+            return (
+              <CardNode
+                key={index}
+                {...cardNode}
+                path={[...path, 'child', index]}
+              />
+            );
+          }
+        })}
+      </UnorderedList>
     </Flex>
   );
 };

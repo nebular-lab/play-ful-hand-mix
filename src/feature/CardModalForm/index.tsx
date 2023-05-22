@@ -60,7 +60,7 @@ const CardModalForm = (props: Props) => {
           })}
         </Flex>
       </Flex>
-      <Button onClick={() => void onSubmit()}>決定</Button>
+      <Button colorScheme={'whatsapp'} onClick={() => void onSubmit()}>決定</Button>
     </Flex>
   );
 };

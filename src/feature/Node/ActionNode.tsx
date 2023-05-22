@@ -5,16 +5,23 @@ import Tag from '../Tag';
 import TagContainer from '../Tag/TagContainer';
 import StreetNode from './StreetNode';
 import PositionNode from './PositionNode';
+import { useHandNodePath } from '@/hooks/useHandNodePath';
+import { useHandNode } from '@/hooks/useHandNode';
 
 type Props = ActionNodeType & { path: Array<number | string> };
 
 export const ActionNode: FC<Props> = (props) => {
-  const { path, move, child } = props;
+  const { path, move, child, isSelected } = props;
   const childType = child?.type;
+  const { selectAction } = useHandNode();
   return (
     <Flex gap={1}>
-      <TagContainer type={'Move'} move={move} />
-      {childType === 'StreetNode' && child && (
+      <TagContainer
+        type={'Move'}
+        move={move}
+        onClick={() => selectAction(path)}
+      />
+      {childType === 'StreetNode' && child && isSelected && (
         <StreetNode
           type="StreetNode"
           path={[...path, 'child']}
@@ -23,7 +30,7 @@ export const ActionNode: FC<Props> = (props) => {
           child={child.child}
         />
       )}
-      {childType === 'PositionNode' && child && (
+      {childType === 'PositionNode' && child && isSelected && (
         <PositionNode
           type="PositionNode"
           path={[...path, 'child']}

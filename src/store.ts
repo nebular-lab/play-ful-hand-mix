@@ -4,6 +4,7 @@ import {
   CardType,
   HandRangeType,
   HandSquareType,
+  IncludeSuitType,
   PairHandRangeType,
   PositionNodeType,
   PositionType,
@@ -38,9 +39,9 @@ export const positionState = atom<PositionType>({
   default: 'OOP',
 });
 
-export const includeSuitState = atom<Array<number>>({
+export const includeSuitState = atom<IncludeSuitType>({
   key: 'includeSuitState',
-  default: [0, 1, 2, 3],
+  default: {s: true, h: true, d: true, c: true},
 });
 export const drawActionsState = atom<Array<ActionType>>({
   key: 'drawActionsState',

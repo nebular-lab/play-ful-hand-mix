@@ -22,6 +22,7 @@ import { defaultHandNode, defaultHandRange } from '@/const';
 import { getHandRange } from '@/lib/getHandRange';
 import { getMoves } from '@/lib/getMoves';
 import next from 'next/types';
+import { drawAllRange } from '@/lib/drawAllRange';
 
 export const useHandNode = () => {
   const addStreetCard = useRecoilCallback(
@@ -77,12 +78,9 @@ export const useHandNode = () => {
           const actionNodes: ActionNodeType[] = [];
           moves.forEach((move) => {
             if (move === 'FOLD') return;
-            // 全部CHECKに設定
-            console.log(handRange)
+            // 仮に全部CHECKに設定
             const nextHandRange = getNextHandRange(handRange, move);
-            console.log(nextHandRange);
             const deletedNextHandRange = deletedHandRange(nextHandRange, board);
-            console.log(deletedNextHandRange);
             const { actionNode, nextPosition } = getNextState(
               { ...handRanges, [position]: deletedNextHandRange },
               move,
@@ -98,7 +96,40 @@ export const useHandNode = () => {
     [],
   );
 
-  return { addStreetCard, registerHandRange };
+  const selectAction = useRecoilCallback(
+    ({ snapshot, set }) =>
+      (path: (number | string)[]) => {
+        const handNode = snapshot.getLoadable(handNodeState).getValue();
+        const noSelectedNode = produce(handNode, (draft) => {
+          let current: any = draft;
+          const lastDeletedPath = _.dropRight(path, 2);
+          lastDeletedPath.forEach((path) => {
+            current = current[path];
+          });
+          //この時点でcurrentはPositionNode
+          const positionNode: PositionNodeType = current;
+          positionNode.child?.forEach((actionNode) => {
+            actionNode.isSelected = false;
+            actionNode.isDisplay = false;
+          });
+        });
+        const nextState = produce(noSelectedNode, (draft) => {
+          let current: any = draft;
+          path.forEach((path) => {
+            current = current[path];
+          });
+          //この時点でcurrentはActionNode
+          const actionNode: ActionNodeType = current;
+          actionNode.isSelected = true;
+          actionNode.isDisplay = true;
+        });
+
+        set(handNodeState, nextState);
+      },
+    [],
+  );
+
+  return { addStreetCard, registerHandRange, selectAction };
 };
 
 const getNextState = (
@@ -114,6 +145,7 @@ const getNextState = (
   };
   let nextPosition: PositionType;
   if (move === 'PREFLOP' && position === 'OOP') {
+    actionNode.isSelected = true;
     actionNode.child = {
       type: 'PositionNode',
       position: 'IP',
@@ -122,33 +154,48 @@ const getNextState = (
         { move: 'FOLD', percent: 0 },
       ],
       board: [],
-      handRanges: handRanges,
+      handRanges: {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: handRanges.IP,
+      },
     };
     nextPosition = 'IP';
   } else if (move === 'PREFLOP' && position === 'IP') {
+    actionNode.isSelected = true;
     actionNode.child = {
       type: 'StreetNode',
       board: [],
-      handRanges: handRanges,
+      handRanges: {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: drawAllRange('CHECK', handRanges.IP),
+      },
     };
     nextPosition = 'OOP';
   } else if (move === 'CALL' && position == 'OOP') {
     actionNode.child = {
       type: 'StreetNode',
       board: board,
-      handRanges: handRanges,
+      handRanges: {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: drawAllRange('CHECK', handRanges.IP),
+      },
     };
     nextPosition = 'OOP';
   } else if (position == 'OOP') {
     let actions: ActionType[] = [];
+    let nextHandRanges: PairHandRangeType = handRanges;
     if (move === 'CHECK') {
       actions = [
         { move: 'ALLIN', percent: 0 },
         { move: 'BET L', percent: 0 },
         { move: 'BET M', percent: 0 },
-        { move: 'BET S', percent: 0 },
-        { move: 'CHECK', percent: 100 },
+        { move: 'BET S', percent: 100 },
+        { move: 'CHECK', percent: 0 },
       ];
+      nextHandRanges = {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: drawAllRange('CHECK', handRanges.IP),
+      };
     } else if (
       move == 'BET L' ||
       move == 'BET M' ||
@@ -158,28 +205,39 @@ const getNextState = (
       actions = [
         { move: 'ALLIN', percent: 0 },
         { move: 'RAISE', percent: 0 },
-        { move: 'CALL', percent: 0 },
-        { move: 'FOLD', percent: 100 },
+        { move: 'CALL', percent: 100 },
+        { move: 'FOLD', percent: 0 },
       ];
+      nextHandRanges = {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: drawAllRange('FOLD', handRanges.IP),
+      };
     } else if (move == 'ALLIN') {
       actions = [
         { move: 'CALL', percent: 100 },
         { move: 'FOLD', percent: 0 },
       ];
+      nextHandRanges = {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: drawAllRange('FOLD', handRanges.IP),
+      };
     }
     actionNode.child = {
       type: 'PositionNode',
       position: 'IP',
       actions: actions,
       board: board,
-      handRanges: handRanges,
+      handRanges: nextHandRanges,
     };
     nextPosition = 'IP';
   } else if (position == 'IP' && (move == 'CALL' || move == 'CHECK')) {
     actionNode.child = {
       type: 'StreetNode',
       board: board,
-      handRanges: handRanges,
+      handRanges: {
+        OOP: drawAllRange('CHECK', handRanges.OOP),
+        IP: drawAllRange('CHECK', handRanges.IP),
+      },
     };
     nextPosition = 'OOP';
   } else if (
@@ -205,8 +263,8 @@ const getNextState = (
       actions = [
         { move: 'ALLIN', percent: 0 },
         { move: 'RAISE', percent: 0 },
-        { move: 'CALL', percent: 0 },
-        { move: 'FOLD', percent: 100 },
+        { move: 'CALL', percent: 100 },
+        { move: 'FOLD', percent: 0 },
       ];
     }
     actionNode.child = {
@@ -214,7 +272,10 @@ const getNextState = (
       position: 'OOP',
       actions: actions,
       board: board,
-      handRanges: handRanges,
+      handRanges: {
+        OOP: drawAllRange('FOLD', handRanges.OOP),
+        IP: drawAllRange('CHECK', handRanges.IP),
+      },
     };
     nextPosition = 'OOP';
   } else {

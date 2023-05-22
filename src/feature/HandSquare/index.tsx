@@ -20,12 +20,13 @@ const HandSquare: FC<Props> = (props) => {
     <Flex
       w={w}
       h={h}
-      bg={'main'}
+      bg={'unsetRange'}
       position={'relative'}
       _hover={{ cursor: 'pointer' }}
       justifyContent={'center'}
       alignItems={'center'}
       border={'1px'}
+      borderColor={'main'}
       boxSizing="border-box"
       onMouseDown={handleDraw}
       onMouseMove={onMouseMove}
@@ -60,7 +61,7 @@ type HandStripeProps = {
 };
 const HandStripe: FC<HandStripeProps> = (props) => {
   const { hand } = props;
-  if (hand.isDeleted) return <Box w={'full'} h={'full'} bg={'main'}></Box>;
+  if (hand.isDeleted) return <Box w={'full'} h={'full'} bg={'unsetRange'}></Box>;
   return (
     <Flex direction={'column-reverse'} w={'full'} h={'full'}>
       {hand.actions.map((action, index) => {

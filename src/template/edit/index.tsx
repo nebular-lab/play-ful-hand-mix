@@ -4,6 +4,7 @@ import HandRegisterButton from '@/feature/HandRegisterButton';
 import HandRegisterButtonContainer from '@/feature/HandRegisterButton/HandRegisterButtonContainer';
 import HandTree from '@/feature/HandTree';
 import HandTreeContainer from '@/feature/HandTree/HandTreeContainer';
+import IncludeSuitSelectContainer from '@/feature/IncludeSuitSelect/IncludeSuitSelectContainer';
 import { Flex } from '@chakra-ui/react';
 import { FC, MutableRefObject, memo } from 'react';
 
@@ -34,6 +35,7 @@ const EditPage: FC<Props> = (props) => {
         <Flex w={'full'} gap={2} mt={1} direction={'column'}>
           <HandRegisterButtonContainer />
           <DrawActionGroupContainer />
+          <IncludeSuitSelectContainer/>
         </Flex>
       </Flex>
     </Flex>

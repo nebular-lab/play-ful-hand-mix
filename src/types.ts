@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export const CardMarkTypeSchema = z.union([
-  z.literal('h'),
-  z.literal('c'),
   z.literal('s'),
+  z.literal('h'),
   z.literal('d'),
+  z.literal('c'),
 ]);
 export type CardMarkType = z.infer<typeof CardMarkTypeSchema>;
 
@@ -91,6 +91,14 @@ export const HandRangeObjectSchema = z.record(
   z.record(z.record(z.record(z.number()))),
 );
 export type HandRangeObjectType = z.infer<typeof HandRangeObjectSchema>;
+
+export const IncludeSuitSchema = z.object({
+  s: z.boolean(),
+  h: z.boolean(),
+  d: z.boolean(),
+  c: z.boolean(),
+});
+export type IncludeSuitType = z.infer<typeof IncludeSuitSchema>;
 
 export const HandKindSchema = z.object({
   // straightFlush: z.array(CardIndexSchema),
