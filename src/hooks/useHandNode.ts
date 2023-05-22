@@ -22,7 +22,7 @@ import { defaultHandNode, defaultHandRange } from '@/const';
 import { getHandRange } from '@/lib/getHandRange';
 import { getMoves } from '@/lib/getMoves';
 import next from 'next/types';
-import { drawAllRange } from '@/lib/drawAllRange';
+import { allDrawedRange } from '@/lib/drawAllRange';
 
 export const useHandNode = () => {
   const addStreetCard = useRecoilCallback(
@@ -155,7 +155,7 @@ const getNextState = (
       ],
       board: [],
       handRanges: {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
         IP: handRanges.IP,
       },
     };
@@ -166,8 +166,8 @@ const getNextState = (
       type: 'StreetNode',
       board: [],
       handRanges: {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
-        IP: drawAllRange('CHECK', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.IP),
       },
     };
     nextPosition = 'OOP';
@@ -176,8 +176,8 @@ const getNextState = (
       type: 'StreetNode',
       board: board,
       handRanges: {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
-        IP: drawAllRange('CHECK', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.IP),
       },
     };
     nextPosition = 'OOP';
@@ -193,8 +193,8 @@ const getNextState = (
         { move: 'CHECK', percent: 0 },
       ];
       nextHandRanges = {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
-        IP: drawAllRange('CHECK', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.IP),
       };
     } else if (
       move == 'BET L' ||
@@ -209,8 +209,8 @@ const getNextState = (
         { move: 'FOLD', percent: 0 },
       ];
       nextHandRanges = {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
-        IP: drawAllRange('FOLD', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'FOLD', percent: 100 }], handRanges.IP),
       };
     } else if (move == 'ALLIN') {
       actions = [
@@ -218,8 +218,8 @@ const getNextState = (
         { move: 'FOLD', percent: 0 },
       ];
       nextHandRanges = {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
-        IP: drawAllRange('FOLD', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'FOLD', percent: 100 }], handRanges.IP),
       };
     }
     actionNode.child = {
@@ -235,8 +235,8 @@ const getNextState = (
       type: 'StreetNode',
       board: board,
       handRanges: {
-        OOP: drawAllRange('CHECK', handRanges.OOP),
-        IP: drawAllRange('CHECK', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.IP),
       },
     };
     nextPosition = 'OOP';
@@ -273,8 +273,8 @@ const getNextState = (
       actions: actions,
       board: board,
       handRanges: {
-        OOP: drawAllRange('FOLD', handRanges.OOP),
-        IP: drawAllRange('CHECK', handRanges.IP),
+        OOP: allDrawedRange([{ move: 'FOLD', percent: 100 }], handRanges.OOP),
+        IP: allDrawedRange([{ move: 'CHECK', percent: 100 }], handRanges.IP),
       },
     };
     nextPosition = 'OOP';

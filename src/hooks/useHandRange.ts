@@ -1,4 +1,6 @@
 import { cardArrayIndex } from '@/lib/convertCard';
+import { allDrawedRange } from '@/lib/drawAllRange';
+import { getHandRange } from '@/lib/getHandRange';
 import { getSuitFromIndex } from '@/lib/getSuitFromIndex';
 import { sumActionPercent } from '@/lib/sumActionPercent';
 import { drawActionsState, handRangeState, includeSuitState } from '@/store';
@@ -53,6 +55,15 @@ export const useHandRange = () => {
       },
     [],
   );
+  const drawAllRange = useRecoilCallback(
+    ({ snapshot, set }) =>
+      () => {
+        const handRange = getHandRange(snapshot);
+        const drawActions = snapshot.getLoadable(drawActionsState).getValue();
+        setHandRange(allDrawedRange(drawActions, handRange));
+      },
+    [],
+  );
 
-  return { drawMatrix, setHandRange };
+  return { drawMatrix, setHandRange,drawAllRange };
 };

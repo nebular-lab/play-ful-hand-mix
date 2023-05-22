@@ -1,3 +1,4 @@
+import { AllRangeDrawButtonContainer } from '@/feature/AllRangeDrawButton/AllRangeDrawButtonContainer';
 import DrawActionGroupContainer from '@/feature/DrawActionGroup/DrawActionGoupContainer';
 import { HandMatrixContainer } from '@/feature/HandMatrix/HandMatrixContainer';
 import HandRegisterButton from '@/feature/HandRegisterButton';
@@ -35,7 +36,10 @@ const EditPage: FC<Props> = (props) => {
         <Flex w={'full'} gap={2} mt={1} direction={'column'}>
           <HandRegisterButtonContainer />
           <DrawActionGroupContainer />
-          <IncludeSuitSelectContainer/>
+          <Flex gap={2}>
+            <IncludeSuitSelectContainer />
+            <AllRangeDrawButtonContainer />
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
