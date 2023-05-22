@@ -18,7 +18,7 @@ type Props = {
 };
 const EditPage: FC<Props> = (props) => {
   const { isMouseDownRef, onMouseDown, onMouseUp } = props;
-  const {setSelectedHandIndex} = useSelectedHandIndex();
+  const { setSelectedHandIndex } = useSelectedHandIndex();
   return (
     <Flex
       w={'full'}
@@ -27,9 +27,6 @@ const EditPage: FC<Props> = (props) => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
-      <Flex w={'full'} h={10} bg={'gray.100'}>
-        <Button onClick={() => setSelectedHandIndex(null)}>aaa</Button>
-      </Flex>
       <Flex py={4} px={2}>
         <HandTreeContainer />
       </Flex>
