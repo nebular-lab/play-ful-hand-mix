@@ -6,7 +6,9 @@ import HandRegisterButtonContainer from '@/feature/HandRegisterButton/HandRegist
 import HandTree from '@/feature/HandTree';
 import HandTreeContainer from '@/feature/HandTree/HandTreeContainer';
 import IncludeSuitSelectContainer from '@/feature/IncludeSuitSelect/IncludeSuitSelectContainer';
-import { Flex } from '@chakra-ui/react';
+import SelectedHandContainer from '@/feature/SelectedHand/SelectedHandContainer';
+import { useSelectedHandIndex } from '@/hooks/useSelectedHandIndex';
+import { Button, Flex, Select } from '@chakra-ui/react';
 import { FC, MutableRefObject, memo } from 'react';
 
 type Props = {
@@ -16,7 +18,7 @@ type Props = {
 };
 const EditPage: FC<Props> = (props) => {
   const { isMouseDownRef, onMouseDown, onMouseUp } = props;
-
+  const {setSelectedHandIndex} = useSelectedHandIndex();
   return (
     <Flex
       w={'full'}
@@ -25,8 +27,8 @@ const EditPage: FC<Props> = (props) => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
-      <Flex w={'full'} h={14} bg={'gray.100'}>
-        ヘッダー
+      <Flex w={'full'} h={10} bg={'gray.100'}>
+        <Button onClick={() => setSelectedHandIndex(null)}>aaa</Button>
       </Flex>
       <Flex py={4} px={2}>
         <HandTreeContainer />
@@ -40,6 +42,7 @@ const EditPage: FC<Props> = (props) => {
             <IncludeSuitSelectContainer />
             <AllRangeDrawButtonContainer />
           </Flex>
+          <SelectedHandContainer />
         </Flex>
       </Flex>
     </Flex>

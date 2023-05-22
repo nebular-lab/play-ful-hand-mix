@@ -1,4 +1,5 @@
 import {
+  CardNumType,
   HandRangeType,
   HandSquareType,
   PositionNodeType,
@@ -94,7 +95,7 @@ export const cardNums = {
   '3': 11,
   '2': 12,
 };
-export const cardStrings = [
+export const cardStrings:CardNumType[] = [
   'A',
   'K',
   'Q',

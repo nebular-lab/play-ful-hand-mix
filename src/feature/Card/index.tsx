@@ -23,7 +23,7 @@ const Card: FC<Props> = (props) => {
       onClick={onClick}
       cursor={(onClick && 'pointer') || 'default'}
     >
-      <Text textColor={'white'} fontSize={textSize}>
+      <Text textColor={'white'} userSelect={'none'} fontSize={textSize}>
         {text}
       </Text>
     </Flex>

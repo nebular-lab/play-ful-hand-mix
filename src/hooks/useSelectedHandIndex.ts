@@ -7,6 +7,7 @@ export const useSelectedHandIndex = () => {
       (index: { row: number; col: number } | null) => {
         set(selectedHandIndexState, index);
       },
+    [],
   );
   return { setSelectedHandIndex };
 };

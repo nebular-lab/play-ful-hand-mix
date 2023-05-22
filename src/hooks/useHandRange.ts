@@ -44,6 +44,27 @@ export const useHandRange = () => {
       },
     [],
   );
+
+  const drawHand=useRecoilCallback(
+    ({ snapshot, set }) =>
+      (row: number, col: number,handIndex:number) => {
+        const handRange = snapshot.getLoadable(handRangeState({ row, col }))
+          .getValue();
+        const drawActions = snapshot.getLoadable(drawActionsState).getValue();
+        const updatedHandRange = produce(handRange, (draft) => {
+          const maxPercent = sumActionPercent(handRange.hands[handIndex].actions);
+          draft.hands[handIndex].actions = drawActions.map((action) => {
+            return {
+              move: action.move,
+              percent: (action.percent * maxPercent) / 100,
+            };
+          });
+        });
+        set(handRangeState({ row, col }), updatedHandRange);
+      },
+    [],
+  );
+
   const setHandRange = useRecoilCallback(
     ({ set }) =>
       (handRange: HandRangeType) => {
@@ -65,5 +86,5 @@ export const useHandRange = () => {
     [],
   );
 
-  return { drawMatrix, setHandRange,drawAllRange };
+  return { drawMatrix, setHandRange,drawAllRange ,drawHand};
 };

@@ -7,8 +7,10 @@ type Props = {
   onMouseDown: () => void;
   onMouseMove: () => void;
   onClick: () => void;
+  onMouseOver: () => void;
   text: string;
   borderColor: string;
+  border: string;
   hands: HandType[];
   isExist: boolean;
   gridNum: number;
@@ -21,8 +23,10 @@ const HandSquare: FC<Props> = (props) => {
     isExist,
     gridNum,
     borderColor,
+    border,
     onMouseMove,
     onClick,
+    onMouseOver,
   } = props;
   const w = '60px';
   const h = '52px';
@@ -36,11 +40,12 @@ const HandSquare: FC<Props> = (props) => {
       _hover={{ cursor: 'pointer' }}
       justifyContent={'center'}
       alignItems={'center'}
-      border={'1px'}
+      border={border}
       borderColor={borderColor}
       boxSizing="border-box"
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
+      onMouseOver={onMouseOver}
       onClick={onClick}
     >
       <SimpleGrid columns={gridNum} position={'absolute'} w={'full'} h={'full'}>
@@ -56,7 +61,7 @@ const HandSquare: FC<Props> = (props) => {
   );
 };
 
-const Mask = () => {
+const Mask = memo(() => {
   return (
     <Flex
       w={'full'}
@@ -67,11 +72,11 @@ const Mask = () => {
       position={'absolute'}
     ></Flex>
   );
-};
+});
 type HandStripeProps = {
   hand: HandType;
 };
-const HandStripe: FC<HandStripeProps> = (props) => {
+export const HandStripe: FC<HandStripeProps> = memo((props) => {
   const { hand } = props;
   if (hand.isDeleted)
     return <Box w={'full'} h={'full'} bg={'unsetRange'}></Box>;
@@ -85,6 +90,6 @@ const HandStripe: FC<HandStripeProps> = (props) => {
       })}
     </Flex>
   );
-};
+});
 
 export default memo(HandSquare);

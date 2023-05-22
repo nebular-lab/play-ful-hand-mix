@@ -118,3 +118,67 @@ export const cardArrayIndex = (
     }
   }
 };
+
+export const getCardMark = (suit: suitType, index: number): CardMarkType[] => {
+  switch (suit) {
+    case 'suited':
+      switch (index) {
+        case 0:
+          return ['s', 's'];
+        case 1:
+          return ['h', 'h'];
+        case 2:
+          return ['d', 'd'];
+        case 3:
+          return ['c', 'c'];
+        default:
+          return [];
+      }
+    case 'pair':
+      switch (index) {
+        case 0:
+          return ['s', 'h'];
+        case 1:
+          return ['s', 'd'];
+        case 2:
+          return ['s', 'c'];
+        case 3:
+          return ['h', 'd'];
+        case 4:
+          return ['h', 'c'];
+        case 5:
+          return ['d', 'c'];
+        default:
+          return [];
+      }
+    case 'offsuited':
+      switch (index) {
+        case 0:
+          return ['s', 'h'];
+        case 1:
+          return ['s', 'd'];
+        case 2:
+          return ['s', 'c'];
+        case 3:
+          return ['h', 's'];
+        case 4:
+          return ['h', 'd'];
+        case 5:
+          return ['h', 'c'];
+        case 6:
+          return ['d', 's'];
+        case 7:
+          return ['d', 'h'];
+        case 8:
+          return ['d', 'c'];
+        case 9:
+          return ['c', 's'];
+        case 10:
+          return ['c', 'h'];
+        case 11:
+          return ['c', 'd'];
+        default:
+          return [];
+      }
+  }
+};

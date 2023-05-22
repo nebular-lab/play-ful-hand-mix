@@ -67,7 +67,7 @@ export const selectedHandIndexState = atom<{ row: number; col: number } | null>(
   },
 );
 
-export const hoveredHandIndexState = atom<{ row: number; col: number }>({
+export const hoveredHandIndexState = atom<{ row: number; col: number } >({
   key: 'hoveredHandIndexState',
   default: { row: 0, col: 0 },
 });
