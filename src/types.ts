@@ -92,13 +92,8 @@ export const HandRangeObjectSchema = z.record(
 );
 export type HandRangeObjectType = z.infer<typeof HandRangeObjectSchema>;
 
-export const IncludeSuitSchema = z.object({
-  s: z.boolean(),
-  h: z.boolean(),
-  d: z.boolean(),
-  c: z.boolean(),
-});
-export type IncludeSuitType = z.infer<typeof IncludeSuitSchema>;
+const IncludeSuitTypeSchema = z.array(z.tuple([CardMarkTypeSchema, z.boolean()]));
+export type IncludeSuitType = z.infer<typeof IncludeSuitTypeSchema>;
 
 export const HandKindSchema = z.object({
   // straightFlush: z.array(CardIndexSchema),

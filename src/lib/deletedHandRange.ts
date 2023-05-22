@@ -11,13 +11,13 @@ export const deletedHandRange = (
     const cardValue = convertCardValue(card.num);
     for (let i = 0; i < 13; i++) {
       const suit1 = clonedHandRange[cardValue][i].suit;
-      const deleteIndex = cardArrayIndex(suit1, card, false);
+      const deleteIndex = cardArrayIndex(suit1, card.mark, false, false);
       deleteIndex?.forEach((index) => {
         clonedHandRange[cardValue][i].hands[index].isDeleted = true;
       });
 
       const suit2 = clonedHandRange[i][cardValue].suit;
-      const deleteIndex2 = cardArrayIndex(suit2, card, true);
+      const deleteIndex2 = cardArrayIndex(suit2, card.mark, true,false);
       deleteIndex2?.forEach((index) => {
         clonedHandRange[i][cardValue].hands[index].isDeleted = true;
       });

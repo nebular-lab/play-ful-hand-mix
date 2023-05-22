@@ -41,7 +41,12 @@ export const positionState = atom<PositionType>({
 
 export const includeSuitState = atom<IncludeSuitType>({
   key: 'includeSuitState',
-  default: {s: true, h: true, d: true, c: true},
+  default: [
+    ['s', true],
+    ['h', true],
+    ['d', true],
+    ['c', true],
+  ],
 });
 export const drawActionsState = atom<Array<ActionType>>({
   key: 'drawActionsState',

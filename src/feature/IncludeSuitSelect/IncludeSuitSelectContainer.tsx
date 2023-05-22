@@ -6,13 +6,11 @@ import { CardMarkType, IncludeSuitType } from '@/types';
 
 const IncludeSuitSelectContainer = () => {
   const [includeSuit] = useRecoilState(includeSuitState);
-  const includeSuitArray = Object.entries(includeSuit) as Array<
-    [CardMarkType, boolean]
-  >;
+
   const { toggleIncludeSuit } = useIncludeSuit();
   return (
     <IncludeSuitSelect
-      includeSuitArray={includeSuitArray}
+      includeSuitArray={includeSuit}
       toggleIncludeSuit={toggleIncludeSuit}
     />
   );

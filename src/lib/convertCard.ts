@@ -51,11 +51,12 @@ export function convertSuit(suit: keyof SuitMap): number {
 
 export const cardArrayIndex = (
   suit: suitType,
-  card: CardType,
+  mark: CardMarkType,
   isRow: boolean,
+  isBoth: boolean,
 ) => {
   if (suit === 'suited') {
-    switch (card.mark) {
+    switch (mark) {
       case 's':
         return [0];
       case 'h':
@@ -64,10 +65,11 @@ export const cardArrayIndex = (
         return [2];
       case 'c':
         return [3];
+      default:
+        return [];
     }
-  }
-  if (suit === 'pair') {
-    switch (card.mark) {
+  } else if (suit === 'pair') {
+    switch (mark) {
       case 's':
         return [0, 1, 3];
       case 'h':
@@ -76,31 +78,43 @@ export const cardArrayIndex = (
         return [1, 2, 5];
       case 'c':
         return [3, 4, 5];
+      default:
+        return [];
     }
-  }
-  if (suit === 'offsuited') {
-    switch (card.mark) {
+  } else {
+    // offsuited
+    switch (mark) {
       case 's':
-        if (isRow) {
+        if (isBoth) {
+          return [0, 1, 2, 3, 6, 9];
+        } else if (isRow) {
           return [0, 1, 2];
         } else {
           return [3, 6, 9];
         }
       case 'h':
-        if (isRow) {
+        if (isBoth) {
+          return [0, 3, 4, 5, 7, 10];
+        } else if (isRow) {
           return [3, 4, 5];
         }
         return [0, 7, 10];
       case 'd':
-        if (isRow) {
+        if (isBoth) {
+          return [1, 4, 6, 7, 8, 11];
+        } else if (isRow) {
           return [6, 7, 8];
         }
         return [1, 4, 11];
       case 'c':
-        if (isRow) {
+        if (isBoth) {
+          return [2, 5, 8, 9, 10, 11];
+        } else if (isRow) {
           return [9, 10, 11];
         }
         return [2, 5, 8];
+      default:
+        return [];
     }
   }
 };
