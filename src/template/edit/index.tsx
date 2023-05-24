@@ -32,7 +32,7 @@ const EditPage: FC<Props> = (props) => {
       </Flex>
       <Flex w={'full'} h={'full'} bg={'main'} gap={2}>
         <HandMatrixContainer isMouseDownRef={isMouseDownRef} />
-        <Flex w={'full'} gap={2} mt={1} direction={'column'}>
+        <Flex w={'full'}  gap={2} mt={1} direction={'column'}>
           <HandRegisterButtonContainer />
           <DrawActionGroupContainer />
           <Flex gap={2}>

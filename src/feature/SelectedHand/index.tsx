@@ -57,19 +57,20 @@ const SelectedHandStripe: FC<SelectedHandStripeProps> = (props) => {
       onMouseDown={onMouseDown}
       position={'relative'}
     >
-      {hand.actions.map((action, index) => {
-        let bg = getMoveColor(action.move);
-
-        return (
-          <Flex
-            key={index}
-            w={'full'}
-            h={`${action.percent}%`}
-            bg={bg}
-            position={'absolute'}
-          ></Flex>
-        );
-      })}{' '}
+      <Flex w={'full'} h={'full'} position={'absolute'} direction={'column-reverse'}>
+        {hand.actions.map((action, index) => {
+          let bg = getMoveColor(action.move);
+          console.log(action);
+          return (
+            <Flex
+              key={index}
+              w={'full'}
+              h={`${action.percent}%`}
+              bg={bg}
+            ></Flex>
+          );
+        })}
+      </Flex>
       <Flex position={'absolute'} w={'full'} h={'full'}>
         <CardContainer
           card={{ mark: cardMarks[0], num: cardNums[0] }}
