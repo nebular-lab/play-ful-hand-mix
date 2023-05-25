@@ -69,7 +69,7 @@ const CardModalForm = (props: Props) => {
       <Flex direction={'column'} gap={1}>
         {nextNodeCards?.map((nextNodeCard, index) => {
           return (
-            <Flex onClick={() => onBoardClick(index)}>
+            <Flex key={index} onClick={() => onBoardClick(index)}>
               {nextNodeCard.map((card) => {
                 return (
                   <CardContainer
