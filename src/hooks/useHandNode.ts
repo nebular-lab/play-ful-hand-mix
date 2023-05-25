@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {
   ActionNodeType,
   ActionType,
+  CardNodeType,
   CardType,
   HandRangeSchema,
   HandRangeType,
@@ -37,6 +38,7 @@ export const useHandNode = () => {
           });
           //この時点でcurrentはstreetNode
           const streetNode: StreetNodeType = current;
+          const isFirstCard = streetNode.child?.length ? false : true;
           const OOPHandRange = HandRangeSchema.parse(streetNode.handRanges.OOP);
           const IPHandRange = HandRangeSchema.parse(streetNode.handRanges.IP);
           const cardNode = getCardnode(
@@ -44,6 +46,7 @@ export const useHandNode = () => {
             IPHandRange,
             addCards,
             boardCards,
+            isFirstCard,
           );
           if (!streetNode['child']) streetNode['child'] = [];
           streetNode.child.push(cardNode);
@@ -100,6 +103,7 @@ export const useHandNode = () => {
     ({ snapshot, set }) =>
       (path: (number | string)[]) => {
         const handNode = snapshot.getLoadable(handNodeState).getValue();
+        // 一旦全部非表示にする
         const noSelectedNode = produce(handNode, (draft) => {
           let current: any = draft;
           const lastDeletedPath = _.dropRight(path, 2);
@@ -113,6 +117,7 @@ export const useHandNode = () => {
             actionNode.isDisplay = false;
           });
         });
+        // 選択したノードを表示にする
         const nextState = produce(noSelectedNode, (draft) => {
           let current: any = draft;
           path.forEach((path) => {
@@ -129,7 +134,38 @@ export const useHandNode = () => {
     [],
   );
 
-  return { addStreetCard, registerHandRange, selectAction };
+  const selectBoard = useRecoilCallback(
+    ({ snapshot, set }) =>
+      (path: (number | string)[]) => {
+        const handNode = snapshot.getLoadable(handNodeState).getValue();
+        const noSelectedNode = produce(handNode, (draft) => {
+          let current: any = draft;
+          const lastDeletedPath = _.dropRight(path, 2);
+          lastDeletedPath.forEach((path) => {
+            current = current[path];
+          });
+          //この時点でcurrentはStreetNode
+          const streetNode: StreetNodeType = current;
+          streetNode.child?.forEach((cardNode) => {
+            cardNode.isSelected = false;
+            cardNode.isDisplay = false;
+          });
+        });
+        const nextState = produce(noSelectedNode, (draft) => {
+          let current: any = draft;
+          path.forEach((path) => {
+            current = current[path];
+          });
+          //この時点でcurrentはCardNode
+          const cardNode: CardNodeType = current;
+          cardNode.isSelected = true;
+          cardNode.isDisplay = true;
+        });
+        set(handNodeState, nextState);
+      },
+    [],
+  );
+  return { addStreetCard, registerHandRange, selectAction, selectBoard };
 };
 
 const getNextState = (

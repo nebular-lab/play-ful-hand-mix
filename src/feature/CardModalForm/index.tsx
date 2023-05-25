@@ -6,12 +6,15 @@ import { memo } from 'react';
 
 type Props = {
   selectedCards: CardType[];
+  nextNodeCards: CardType[][] | undefined;
   onCardClick: (card: CardType) => void;
   onSubmit: () => void;
+  onBoardClick: (cardsIndex: number) => void;
 };
 
 const CardModalForm = (props: Props) => {
-  const { selectedCards, onCardClick, onSubmit } = props;
+  const { selectedCards, nextNodeCards, onCardClick, onSubmit, onBoardClick } =
+    props;
   const nums: CardNumType[] = [
     'A',
     'K',
@@ -60,7 +63,26 @@ const CardModalForm = (props: Props) => {
           })}
         </Flex>
       </Flex>
-      <Button colorScheme={'whatsapp'} onClick={() => void onSubmit()}>決定</Button>
+      <Button colorScheme={'whatsapp'} onClick={() => void onSubmit()}>
+        決定
+      </Button>
+      <Flex direction={'column'} gap={1}>
+        {nextNodeCards?.map((nextNodeCard, index) => {
+          return (
+            <Flex onClick={() => onBoardClick(index)}>
+              {nextNodeCard.map((card) => {
+                return (
+                  <CardContainer
+                    key={`${card.mark} ${card.num}`}
+                    card={{ num: card.num, mark: card.mark }}
+                    size={'m'}
+                  />
+                );
+              })}
+            </Flex>
+          );
+        })}
+      </Flex>
     </Flex>
   );
 };

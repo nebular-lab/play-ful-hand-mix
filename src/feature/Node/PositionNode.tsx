@@ -2,7 +2,7 @@ import { PositionNodeType } from '@/types';
 import Tag from '../Tag';
 import _ from 'lodash';
 import TagContainer from '../Tag/TagContainer';
-import { Flex, UnorderedList } from '@chakra-ui/react';
+import { Alert, Flex, UnorderedList } from '@chakra-ui/react';
 import { ActionNode } from './ActionNode';
 import { memo } from 'react';
 import { useHandNodePath } from '@/hooks/useHandNodePath';
@@ -42,7 +42,7 @@ const PositionNode = (props: Props) => {
         onClick={onClick}
         isSelected={_.isEqual(path, nodePath)}
       />
-      <Flex mx={1} >
+      <Flex mx={1}>
         {child?.map((actionNode, index) => {
           if (actionNode.isDisplay) {
             return (

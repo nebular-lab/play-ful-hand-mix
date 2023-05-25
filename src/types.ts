@@ -133,6 +133,7 @@ export interface StreetNodeType {
 
 export interface CardNodeType {
   isDisplay: boolean;
+  isSelected: boolean;
   cards: CardType[];
   child?: PositionNodeType;
 }

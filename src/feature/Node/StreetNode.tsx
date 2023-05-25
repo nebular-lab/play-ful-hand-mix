@@ -23,7 +23,12 @@ const StreetNode = (props: Props) => {
         onClick={onClick}
         isSelected={_.isEqual(path, path)}
       />
-      <CardModal isOpen={isOpen} onClose={onClose} />
+      <CardModal
+        isOpen={isOpen}
+        onClose={onClose}
+        cardNodes={child}
+        path={path}
+      />
       <UnorderedList m={0} spacing={1}>
         {child?.map((cardNode, index) => {
           if (cardNode.isDisplay) {

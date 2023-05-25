@@ -6,10 +6,12 @@ export const getCardnode = (
   IPHandRange: HandRangeType,
   addCards: CardType[],
   boardCards: CardType[],
+  isFirstCard: boolean,
 ) => {
   const cardNode: CardNodeType = {
     cards: addCards,
-    isDisplay: true,
+    isSelected: isFirstCard,
+    isDisplay: isFirstCard,
     child: {
       position: 'OOP',
       type: 'PositionNode',
