@@ -23,7 +23,9 @@ const Tag: FC<Props> = (props) => {
       onClick={onClick}
       cursor={'pointer'}
     >
-      <Text textColor={'white'}>{text}</Text>
+      <Text textColor={'white'} userSelect={'none'}>
+        {text}
+      </Text>
     </Flex>
   );
 };

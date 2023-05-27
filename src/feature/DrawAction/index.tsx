@@ -20,10 +20,20 @@ const DrawAction: FC<Props> = (props) => {
       alignItems={'center'}
       rounded={'sm'}
     >
-      <Text fontWeight={'bold'} textColor={'white'} fontSize={'2xl'}>
+      <Text
+        fontWeight={'bold'}
+        textColor={'white'}
+        fontSize={'2xl'}
+        userSelect={'none'}
+      >
         {move}
       </Text>
-      <Text fontWeight={'bold'} textColor={'white'} fontSize={'2xl'}>
+      <Text
+        fontWeight={'bold'}
+        textColor={'white'}
+        fontSize={'2xl'}
+        userSelect={'none'}
+      >
         {percent}
       </Text>
       <SimpleGrid columns={2} gap={'1px'}>
@@ -73,6 +83,7 @@ const PercentButton: FC<PercentButtonProps> = (props) => {
       rounded={'sm'}
       _hover={{ color: moveColor, bg: 'white' }}
       onClick={setAction}
+      userSelect={'none'}
     >
       {percent}
     </Button>
