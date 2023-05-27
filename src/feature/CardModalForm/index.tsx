@@ -7,6 +7,7 @@ import CardContainer from '../Card/CardContainer';
 
 type Props = {
   selectedCards: CardType[];
+  board: CardType[];
   nextNodeCards: CardType[][] | undefined;
   onCardClick: (card: CardType) => void;
   onSubmit: () => void;
@@ -14,8 +15,14 @@ type Props = {
 };
 
 const CardModalForm = (props: Props) => {
-  const { selectedCards, nextNodeCards, onCardClick, onSubmit, onBoardClick } =
-    props;
+  const {
+    selectedCards,
+    board,
+    nextNodeCards,
+    onCardClick,
+    onSubmit,
+    onBoardClick,
+  } = props;
   const nums: CardNumType[] = [
     'A',
     'K',
@@ -51,14 +58,18 @@ const CardModalForm = (props: Props) => {
           {marks.map((mark) => {
             return (
               <Flex key={mark} gap={1}>
-                {nums.map((num) => (
-                  <CardContainer
-                    key={num}
-                    card={{ num, mark }}
-                    onClick={() => onCardClick({ num, mark })}
-                    size={'m'}
-                  />
-                ))}
+                {nums.map((num) => {
+                  const isSelected =board.some((card) => card.num === num && card.mark === mark);
+                  return (
+                    <CardContainer
+                      key={num}
+                      card={{ num, mark }}
+                      onClick={() => onCardClick({ num, mark })}
+                      isSelected={isSelected}
+                      size={'m'}
+                    />
+                  );
+                })}
               </Flex>
             );
           })}

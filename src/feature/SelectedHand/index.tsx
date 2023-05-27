@@ -65,7 +65,6 @@ const SelectedHandStripe: FC<SelectedHandStripeProps> = (props) => {
       >
         {hand.actions.map((action, index) => {
           const bg = getMoveColor(action.move);
-          console.log(action);
           return (
             <Flex
               key={index}
