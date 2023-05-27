@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -84,7 +85,7 @@ export const useHandNode = () => {
             // 仮に全部CHECKに設定
             const nextHandRange = getNextHandRange(handRange, move);
             const deletedNextHandRange = deletedHandRange(nextHandRange, board);
-            const { actionNode, nextPosition } = getNextState(
+            const { actionNode } = getNextState(
               { ...handRanges, [position]: deletedNextHandRange },
               move,
               position,
@@ -165,7 +166,35 @@ export const useHandNode = () => {
       },
     [],
   );
-  return { addStreetCard, registerHandRange, selectAction, selectBoard };
+
+  const resetIsDisplay = useRecoilCallback(
+    ({ snapshot, set }) =>
+      (path: (number | string)[]) => {
+        const handNode = snapshot.getLoadable(handNodeState).getValue();
+        const nextState = produce(handNode, (draft) => {
+          let current: any = draft;
+          path.forEach((path) => {
+            current = current[path];
+          });
+          //この時点でcurrentはpositionNode
+          const positionNode: PositionNodeType = current;
+          positionNode.child?.forEach((actionNode) => {
+            actionNode.isDisplay = true;
+            actionNode.isSelected = false;
+          });
+        });
+        set(handNodeState, nextState);
+      },
+    [],
+  );
+
+  return {
+    addStreetCard,
+    registerHandRange,
+    selectAction,
+    selectBoard,
+    resetIsDisplay,
+  };
 };
 
 const getNextState = (

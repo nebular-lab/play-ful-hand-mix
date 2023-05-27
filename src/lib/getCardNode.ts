@@ -11,7 +11,7 @@ export const getCardnode = (
 ) => {
   const cardNode: CardNodeType = {
     cards: addCards,
-    isSelected: isFirstCard,
+    isSelected: false,
     isDisplay: isFirstCard,
     child: {
       position: 'OOP',

@@ -21,7 +21,7 @@ export const ActionNode: FC<Props> = (props) => {
         move={move}
         onClick={() => selectAction(path)}
       />
-      {childType === 'StreetNode' && child && isSelected && (
+      {childType === 'StreetNode' && child && isSelected  && (
         <StreetNode
           type="StreetNode"
           path={[...path, 'child']}
