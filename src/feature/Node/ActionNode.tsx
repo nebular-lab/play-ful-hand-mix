@@ -8,7 +8,6 @@ import TagContainer from '../Tag/TagContainer';
 import PositionNode from './PositionNode';
 import StreetNode from './StreetNode';
 
-
 type Props = ActionNodeType & { path: Array<number | string> };
 
 export const ActionNode: FC<Props> = (props) => {
@@ -16,7 +15,7 @@ export const ActionNode: FC<Props> = (props) => {
   const childType = child?.type;
   const { selectAction } = useHandNode();
   return (
-    <Flex gap={1}>
+    <Flex gap={1} alignItems={'center'}>
       <TagContainer
         type={'Move'}
         move={move}

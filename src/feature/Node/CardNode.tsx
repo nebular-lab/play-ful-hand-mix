@@ -12,7 +12,7 @@ const CardNode = (props: Props) => {
   const { path, cards, child } = props;
   return (
     <ListItem listStyleType={'none'} p={0}>
-      <Flex gap={1}>
+      <Flex gap={1} alignItems={'center'}>
         <CardTagContainer cards={cards} />
         {child && <PositionNode {...child} path={[...path, 'child']} />}
       </Flex>

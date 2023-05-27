@@ -34,16 +34,28 @@ const PositionNode = (props: Props) => {
     setPairHandRange(handRanges);
   };
   const [nodePath] = useRecoilState(nodePathState);
-
+  const selectedNodeNum =
+    child?.filter((actionNode) => actionNode.isDisplay).length ?? 0;
+  const borderColor = selectedNodeNum > 1 ? 'white' : '';
+  const border = selectedNodeNum > 1 ? '2px' : '';
+  const p = selectedNodeNum > 1 ? 1 : 0;
   return (
-    <Flex>
+    <Flex alignItems={'center'}>
       <TagContainer
         type={'Position'}
         position={position}
         onClick={onClick}
         isSelected={_.isEqual(path, nodePath)}
       />
-      <Flex mx={1}>
+      <Flex
+        mx={1}
+        borderColor={borderColor}
+        border={border}
+        p={p}
+        alignItems={'center'}
+        gap={1}
+        rounded={'md'}
+      >
         {child?.map((actionNode, index) => {
           if (actionNode.isDisplay) {
             return (

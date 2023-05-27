@@ -8,7 +8,6 @@ import HandRegisterButtonContainer from '@/feature/HandRegisterButton/HandRegist
 import HandTreeContainer from '@/feature/HandTree/HandTreeContainer';
 import IncludeSuitSelectContainer from '@/feature/IncludeSuitSelect/IncludeSuitSelectContainer';
 import SelectedHandContainer from '@/feature/SelectedHand/SelectedHandContainer';
-import { useSelectedHandIndex } from '@/hooks/useSelectedHandIndex';
 
 type Props = {
   isMouseDownRef: MutableRefObject<boolean>;
@@ -17,7 +16,6 @@ type Props = {
 };
 const EditPage: FC<Props> = (props) => {
   const { isMouseDownRef, onMouseDown, onMouseUp } = props;
-  const { setSelectedHandIndex } = useSelectedHandIndex();
   return (
     <Flex
       w={'full'}
@@ -26,7 +24,7 @@ const EditPage: FC<Props> = (props) => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
-      <Flex py={4} px={2}>
+      <Flex alignItems={'center'} h={20}>
         <HandTreeContainer />
       </Flex>
       <Flex w={'full'} h={'full'} bg={'main'} gap={2}>

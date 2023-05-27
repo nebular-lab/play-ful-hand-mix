@@ -20,7 +20,7 @@ const StreetNode = (props: Props) => {
     setNodePath(path);
   };
   return (
-    <Flex gap={1}>
+    <Flex gap={1} alignItems={'center'}>
       <StreetTagContainer
         onClick={onClick}
         isSelected={_.isEqual(path, path)}
