@@ -3,9 +3,7 @@ import {
   HandRangeType,
   HandSquareType,
   PositionNodeType,
-  StreetNodeType,
 } from '@/types';
-import { randomUUID } from 'crypto';
 
 const pc: HandSquareType = {
   suit: 'pair',
@@ -95,7 +93,7 @@ export const cardNums = {
   '3': 11,
   '2': 12,
 };
-export const cardStrings:CardNumType[] = [
+export const cardStrings: CardNumType[] = [
   'A',
   'K',
   'Q',

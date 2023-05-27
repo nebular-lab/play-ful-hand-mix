@@ -1,6 +1,8 @@
-import { CardType } from '@/types';
-import CardTag from '.';
 import { memo } from 'react';
+
+import { CardType } from '@/types';
+
+import CardTag from '.';
 
 type Props = {
   cards: CardType[];

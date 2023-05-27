@@ -1,13 +1,15 @@
+import { useRecoilState } from 'recoil';
+
+
+import { useHandRange } from '@/hooks/useHandRange';
+import { getCardNumsFromIndex } from '@/lib/getCardText';
 import {
   handRangeState,
   hoveredHandIndexState,
   selectedHandIndexState,
 } from '@/store';
-import { useRecoilState } from 'recoil';
+
 import SelectedHand from '.';
-import HandSquare from '../HandSquare';
-import { getCardNumsFromIndex, getCardText } from '@/lib/getCardText';
-import { useHandRange } from '@/hooks/useHandRange';
 
 const SelectedHandContainer = () => {
   const [selectedHandIndex] = useRecoilState(selectedHandIndexState);

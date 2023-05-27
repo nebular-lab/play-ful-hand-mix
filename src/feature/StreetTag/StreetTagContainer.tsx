@@ -1,6 +1,6 @@
-import { isSpreadElement } from 'typescript';
-import StreetTag from '.';
 import { memo } from 'react';
+
+import StreetTag from '.';
 
 type Props = {
   onClick: () => void;

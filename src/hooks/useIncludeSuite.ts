@@ -1,6 +1,7 @@
+import { useRecoilCallback } from 'recoil';
+
 import { includeSuitState } from '@/store';
 import { CardMarkType } from '@/types';
-import { useRecoilCallback } from 'recoil';
 
 export const useIncludeSuit = () => {
   const toggleIncludeSuit = useRecoilCallback(

@@ -1,14 +1,14 @@
-import { HandSquareType, suitType } from '@/types';
-import HandSquare from '.';
 import { FC, MutableRefObject, memo, useCallback } from 'react';
-import { cardStrings } from '@/const';
-import { useHandRange } from '@/hooks/useHandRange';
 import { useRecoilState } from 'recoil';
-import { handRangeState, selectedHandIndexState } from '@/store';
-import { getGridNum } from '@/lib/getGridNum';
-import { getCardText } from '@/lib/getCardText';
-import { useSelectedHandIndex } from '@/hooks/useSelectedHandIndex';
+
+import { useHandRange } from '@/hooks/useHandRange';
 import { useHoveredHandIndex } from '@/hooks/useHoveredHandIndex';
+import { useSelectedHandIndex } from '@/hooks/useSelectedHandIndex';
+import { getCardText } from '@/lib/getCardText';
+import { getGridNum } from '@/lib/getGridNum';
+import { handRangeState } from '@/store';
+
+import HandSquare from '.';
 
 type Props = {
   row: number;
@@ -18,7 +18,7 @@ type Props = {
 };
 
 const HandSquareContainer: FC<Props> = (props) => {
-  const { row, col, isMouseDownRef ,isSelected} = props;
+  const { row, col, isMouseDownRef, isSelected } = props;
   const { drawMatrix } = useHandRange();
   const [handSquare] = useRecoilState(handRangeState({ row, col }));
 

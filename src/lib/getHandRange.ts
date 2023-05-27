@@ -1,8 +1,9 @@
-import { handRangeState } from "@/store";
-import { HandRangeType } from "@/types";
-import { Snapshot } from "recoil";
+import { Snapshot } from 'recoil';
 
-export const getHandRange=(snapshot:Snapshot)=>{
+import { handRangeState } from '@/store';
+import { HandRangeType } from '@/types';
+
+export const getHandRange = (snapshot: Snapshot) => {
   const handRange: HandRangeType = [];
   for (let row = 0; row < 13; row++) {
     const rowHandRange = [];
@@ -14,4 +15,4 @@ export const getHandRange=(snapshot:Snapshot)=>{
     handRange.push(rowHandRange);
   }
   return handRange;
-}
+};

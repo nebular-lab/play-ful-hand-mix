@@ -1,15 +1,15 @@
 import { atom, atomFamily } from 'recoil';
+
+import { defaultHandNode, defaultHandRange } from './const';
 import {
   ActionType,
   CardType,
-  HandRangeType,
   HandSquareType,
   IncludeSuitType,
   PairHandRangeType,
   PositionNodeType,
   PositionType,
 } from './types';
-import { defaultHandNode, defaultHandRange } from './const';
 
 export const nodePathState = atom<Array<string | number>>({
   key: 'handNodePathState',
@@ -67,7 +67,7 @@ export const selectedHandIndexState = atom<{ row: number; col: number } | null>(
   },
 );
 
-export const hoveredHandIndexState = atom<{ row: number; col: number } >({
+export const hoveredHandIndexState = atom<{ row: number; col: number }>({
   key: 'hoveredHandIndexState',
   default: { row: 0, col: 0 },
 });

@@ -1,5 +1,5 @@
 import { cardStrings } from '@/const';
-import { CardMarkType, CardNumType, suitType } from '@/types';
+import { CardNumType, suitType } from '@/types';
 
 export const getCardText = (row: number, col: number, suit: suitType) => {
   switch (suit) {

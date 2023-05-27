@@ -1,18 +1,19 @@
-import { PositionNodeType } from '@/types';
-import Tag from '../Tag';
+import { Flex } from '@chakra-ui/react';
 import _ from 'lodash';
-import TagContainer from '../Tag/TagContainer';
-import { Alert, Flex, UnorderedList } from '@chakra-ui/react';
-import { ActionNode } from './ActionNode';
 import { memo } from 'react';
+import { useRecoilState } from 'recoil';
+
+import { useBoard } from '@/hooks/useBoard';
+import { useDrawActions } from '@/hooks/useDrawActions';
 import { useHandNodePath } from '@/hooks/useHandNodePath';
 import { useHandRange } from '@/hooks/useHandRange';
-import { useRecoilState } from 'recoil';
-import { nodePathState } from '@/store';
-import { useDrawActions } from '@/hooks/useDrawActions';
-import { useBoard } from '@/hooks/useBoard';
-import { usePosition } from '@/hooks/usePosition';
 import { usePairHandRange } from '@/hooks/usePairHandRange';
+import { usePosition } from '@/hooks/usePosition';
+import { nodePathState } from '@/store';
+import { PositionNodeType } from '@/types';
+
+import TagContainer from '../Tag/TagContainer';
+import { ActionNode } from './ActionNode';
 
 type Props = PositionNodeType & { path: Array<number | string> };
 

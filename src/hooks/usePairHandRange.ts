@@ -1,6 +1,7 @@
+import { useRecoilCallback } from 'recoil';
+
 import { handRangePairState } from '@/store';
 import { PairHandRangeType } from '@/types';
-import { useRecoilCallback } from 'recoil';
 
 export const usePairHandRange = () => {
   const setPairHandRange = useRecoilCallback(

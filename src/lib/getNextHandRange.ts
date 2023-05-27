@@ -1,5 +1,6 @@
-import { HandRangeType, MoveType } from '@/types';
 import _ from 'lodash';
+
+import { HandRangeType, MoveType } from '@/types';
 
 export const getNextHandRange = (
   handRange: HandRangeType,
@@ -17,7 +18,7 @@ export const getNextHandRange = (
               move: 'CHECK',
               percent: action.percent,
             };
-          }else {
+          } else {
             nextHandRange[rowIndex][colIndex].hands[handIndex].actions[
               actionIndex
             ] = {

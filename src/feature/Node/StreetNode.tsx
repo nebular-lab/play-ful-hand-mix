@@ -1,11 +1,13 @@
-import { StreetNodeType } from '@/types';
-import StreetTagContainer from '../StreetTag/StreetTagContainer';
 import { Flex, UnorderedList, useDisclosure } from '@chakra-ui/react';
 import _ from 'lodash';
-import CardNode from './CardNode';
 import { memo } from 'react';
+
 import { useHandNodePath } from '@/hooks/useHandNodePath';
+import { StreetNodeType } from '@/types';
+
 import { CardModal } from '../CardModal';
+import StreetTagContainer from '../StreetTag/StreetTagContainer';
+import CardNode from './CardNode';
 
 type Props = StreetNodeType & { path: Array<number | string> };
 

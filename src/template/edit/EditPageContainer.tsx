@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+
 import EditPage from '.';
 
 const EditPageContainer = () => {
@@ -10,7 +11,11 @@ const EditPageContainer = () => {
     isMouseDownRef.current = false;
   };
   return (
-    <EditPage isMouseDownRef={isMouseDownRef} onMouseDown={onMouseDown} onMouseUp={onMouseUp} />
+    <EditPage
+      isMouseDownRef={isMouseDownRef}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    />
   );
 };
 export default EditPageContainer;

@@ -1,12 +1,13 @@
+import { produce } from 'immer';
+import { useRecoilCallback } from 'recoil';
+
 import { cardArrayIndex } from '@/lib/convertCard';
 import { allDrawedRange } from '@/lib/drawAllRange';
 import { getHandRange } from '@/lib/getHandRange';
 import { getSuitFromIndex } from '@/lib/getSuitFromIndex';
 import { sumActionPercent } from '@/lib/sumActionPercent';
 import { drawActionsState, handRangeState, includeSuitState } from '@/store';
-import { HandRangeType, MoveType } from '@/types';
-import { produce } from 'immer';
-import { useRecoilCallback } from 'recoil';
+import { HandRangeType } from '@/types';
 
 export const useHandRange = () => {
   const drawMatrix = useRecoilCallback(
@@ -45,14 +46,17 @@ export const useHandRange = () => {
     [],
   );
 
-  const drawHand=useRecoilCallback(
+  const drawHand = useRecoilCallback(
     ({ snapshot, set }) =>
-      (row: number, col: number,handIndex:number) => {
-        const handRange = snapshot.getLoadable(handRangeState({ row, col }))
+      (row: number, col: number, handIndex: number) => {
+        const handRange = snapshot
+          .getLoadable(handRangeState({ row, col }))
           .getValue();
         const drawActions = snapshot.getLoadable(drawActionsState).getValue();
         const updatedHandRange = produce(handRange, (draft) => {
-          const maxPercent = sumActionPercent(handRange.hands[handIndex].actions);
+          const maxPercent = sumActionPercent(
+            handRange.hands[handIndex].actions,
+          );
           draft.hands[handIndex].actions = drawActions.map((action) => {
             return {
               move: action.move,
@@ -77,7 +81,7 @@ export const useHandRange = () => {
     [],
   );
   const drawAllRange = useRecoilCallback(
-    ({ snapshot, set }) =>
+    ({ snapshot }) =>
       () => {
         const handRange = getHandRange(snapshot);
         const drawActions = snapshot.getLoadable(drawActionsState).getValue();
@@ -86,5 +90,5 @@ export const useHandRange = () => {
     [],
   );
 
-  return { drawMatrix, setHandRange,drawAllRange ,drawHand};
+  return { drawMatrix, setHandRange, drawAllRange, drawHand };
 };

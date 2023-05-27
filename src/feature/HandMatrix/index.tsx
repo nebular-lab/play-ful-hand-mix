@@ -1,9 +1,10 @@
-import { HandRangeType } from '@/types';
 import { Flex } from '@chakra-ui/react';
 import { FC, MutableRefObject, memo } from 'react';
-import HandSquareContainer from '../HandSquare/HandSquareContainer';
 import { useRecoilState } from 'recoil';
+
 import { selectedHandIndexState } from '@/store';
+
+import HandSquareContainer from '../HandSquare/HandSquareContainer';
 
 type Props = {
   isMouseDownRef: MutableRefObject<boolean>;

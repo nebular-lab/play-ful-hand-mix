@@ -1,6 +1,8 @@
-import { ActionType } from '@/types';
 import { Flex } from '@chakra-ui/react';
 import { FC, memo } from 'react';
+
+import { ActionType } from '@/types';
+
 import DrawActionContainer from '../DrawAction/DrawActionContainer';
 
 type Props = {

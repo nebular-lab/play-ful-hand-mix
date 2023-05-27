@@ -1,7 +1,8 @@
+import { useRecoilCallback } from 'recoil';
+
 import { updatedDrawActions } from '@/lib/updatedDrawActions';
 import { drawActionsState } from '@/store';
-import { ActionType, MoveType } from '@/types';
-import { useRecoilCallback } from 'recoil';
+import { ActionType } from '@/types';
 
 // いらないかも
 export const useDrawActions = () => {
@@ -21,5 +22,5 @@ export const useDrawActions = () => {
     [],
   );
 
-  return { setDrawActions,resetDrawActions };
+  return { setDrawActions, resetDrawActions };
 };

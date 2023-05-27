@@ -1,6 +1,8 @@
-import { PositionNodeType } from '@/types';
-import PositionNode from '../Node/PositionNode';
 import { memo } from 'react';
+
+import { PositionNodeType } from '@/types';
+
+import PositionNode from '../Node/PositionNode';
 
 type Props = {
   handTree: PositionNodeType;

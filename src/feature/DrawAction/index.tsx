@@ -1,6 +1,7 @@
-import { ActionType, MoveType } from '@/types';
-import { Button, Flex, SimpleGrid, Spacer, Text } from '@chakra-ui/react';
+import { Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 import { FC, memo } from 'react';
+
+import { ActionType, MoveType } from '@/types';
 
 type Props = {
   move: MoveType;

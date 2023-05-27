@@ -1,5 +1,6 @@
-import { ActionType, HandRangeType, MoveType } from '@/types';
 import _ from 'lodash';
+
+import { ActionType, HandRangeType } from '@/types';
 
 export const allDrawedRange = (
   actions: ActionType[],

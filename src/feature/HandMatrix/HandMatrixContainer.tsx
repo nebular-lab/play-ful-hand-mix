@@ -1,7 +1,9 @@
-import { handRangeState, selectedHandIndexState } from '@/store';
-import { useRecoilCallback, useRecoilState } from 'recoil';
-import HandMatrix from '.';
 import { FC, MutableRefObject } from 'react';
+import { useRecoilState } from 'recoil';
+
+import { selectedHandIndexState } from '@/store';
+
+import HandMatrix from '.';
 
 type Props = {
   isMouseDownRef: MutableRefObject<boolean>;

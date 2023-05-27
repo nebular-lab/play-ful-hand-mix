@@ -1,6 +1,7 @@
+import { useRecoilCallback } from 'recoil';
+
 import { boardState } from '@/store';
 import { CardType } from '@/types';
-import { useRecoilCallback } from 'recoil';
 
 export const useBoard = () => {
   const setBoard = useRecoilCallback(

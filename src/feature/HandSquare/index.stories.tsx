@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import HandSquare from '.';
 type Story = StoryObj<typeof HandSquare>;
 const meta: Meta<typeof HandSquare> = {
@@ -8,7 +9,6 @@ const meta: Meta<typeof HandSquare> = {
 export default meta;
 export const Default: Story = {
   args: {
-    onMouseDown: () => {},
     gridNum: 6,
     text: 'AA',
     isExist: true,

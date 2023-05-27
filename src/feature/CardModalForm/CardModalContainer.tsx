@@ -1,12 +1,13 @@
-import { useBoard } from '@/hooks/useBoard';
-import { useHandNode } from '@/hooks/useHandNode';
-import { boardState } from '@/store';
-import { CardMarkType, CardNodeType, CardNumType, CardType } from '@/types';
 import { produce } from 'immer';
 import _ from 'lodash';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import Card from '../Card';
+
+
+import { useHandNode } from '@/hooks/useHandNode';
+import { boardState } from '@/store';
+import { CardNodeType, CardType } from '@/types';
+
 import CardModalForm from '.';
 
 type Props = {

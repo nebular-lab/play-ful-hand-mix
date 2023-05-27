@@ -1,12 +1,12 @@
-import { cardNums } from '@/const';
+import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
+import { FC, memo } from 'react';
+
+
 import { getCardMark } from '@/lib/convertCard';
 import { getMoveColor } from '@/lib/getMoveColor';
 import { CardNumType, HandType, suitType } from '@/types';
-import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
-import { FC, memo } from 'react';
-import Card from '../Card';
+
 import CardContainer from '../Card/CardContainer';
-import { useHandRange } from '@/hooks/useHandRange';
 
 type Props = {
   hands: HandType[];
@@ -57,9 +57,14 @@ const SelectedHandStripe: FC<SelectedHandStripeProps> = (props) => {
       onMouseDown={onMouseDown}
       position={'relative'}
     >
-      <Flex w={'full'} h={'full'} position={'absolute'} direction={'column-reverse'}>
+      <Flex
+        w={'full'}
+        h={'full'}
+        position={'absolute'}
+        direction={'column-reverse'}
+      >
         {hand.actions.map((action, index) => {
-          let bg = getMoveColor(action.move);
+          const bg = getMoveColor(action.move);
           console.log(action);
           return (
             <Flex

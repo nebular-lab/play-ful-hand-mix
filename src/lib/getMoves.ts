@@ -1,8 +1,10 @@
-import { MoveType } from "@/types";
-import { getHandRange } from "./getHandRange";
-import { Snapshot } from "recoil";
+import { Snapshot } from 'recoil';
 
-export const getMoves=(snapshot:Snapshot)=>{
+import { MoveType } from '@/types';
+
+import { getHandRange } from './getHandRange';
+
+export const getMoves = (snapshot: Snapshot) => {
   const moves = new Set<MoveType>();
   const handRange = getHandRange(snapshot);
   handRange.forEach((row) => {
@@ -15,4 +17,4 @@ export const getMoves=(snapshot:Snapshot)=>{
     });
   });
   return Array.from(moves);
-}
+};

@@ -1,8 +1,10 @@
-import { CardNodeType } from '@/types';
 import { Flex, ListItem } from '@chakra-ui/react';
+import { memo } from 'react';
+
+import { CardNodeType } from '@/types';
+
 import CardTagContainer from '../CardTag/CardTagContainer';
 import PositionNode from './PositionNode';
-import { memo } from 'react';
 
 type Props = CardNodeType & { path: Array<number | string> };
 

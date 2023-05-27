@@ -1,12 +1,13 @@
-import { ActionNodeType } from '@/types';
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { FC } from 'react';
-import Tag from '../Tag';
-import TagContainer from '../Tag/TagContainer';
-import StreetNode from './StreetNode';
-import PositionNode from './PositionNode';
-import { useHandNodePath } from '@/hooks/useHandNodePath';
+
 import { useHandNode } from '@/hooks/useHandNode';
+import { ActionNodeType } from '@/types';
+
+import TagContainer from '../Tag/TagContainer';
+import PositionNode from './PositionNode';
+import StreetNode from './StreetNode';
+
 
 type Props = ActionNodeType & { path: Array<number | string> };
 

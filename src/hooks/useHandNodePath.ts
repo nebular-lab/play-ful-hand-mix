@@ -1,7 +1,8 @@
-import { nodePathState } from '@/store';
 import { useRecoilCallback } from 'recoil';
 
-export const useHandNodePath = (path: Array<number | string>) => {
+import { nodePathState } from '@/store';
+
+export const useHandNodePath = () => {
   const setNodePath = useRecoilCallback(
     ({ set }) =>
       (path: Array<number | string>) => {

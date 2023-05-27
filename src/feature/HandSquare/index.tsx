@@ -1,8 +1,8 @@
+import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react';
+import { FC, memo } from 'react';
+
 import { getMoveColor } from '@/lib/getMoveColor';
-import { getGridNum } from '@/lib/getGridNum';
-import { ActionType, HandType, suitType } from '@/types';
-import { Box, Flex, SimpleGrid, Text, grid } from '@chakra-ui/react';
-import { FC, MutableRefObject, memo } from 'react';
+import { HandType } from '@/types';
 type Props = {
   onMouseDown: () => void;
   onMouseMove: () => void;
@@ -87,7 +87,7 @@ export const HandStripe: FC<HandStripeProps> = memo((props) => {
   return (
     <Flex direction={'column-reverse'} w={'full'} h={'full'}>
       {hand.actions.map((action, index) => {
-        let bg = getMoveColor(action.move);
+        const bg = getMoveColor(action.move);
         return (
           <Box key={index} w={'full'} h={`${action.percent}%`} bg={bg}></Box>
         );

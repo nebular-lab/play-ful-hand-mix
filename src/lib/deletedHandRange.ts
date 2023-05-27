@@ -1,6 +1,8 @@
-import { CardType, HandRangeType } from '@/types';
-import { cardArrayIndex, convertCardValue, convertSuit } from './convertCard';
 import _ from 'lodash';
+
+import { CardType, HandRangeType } from '@/types';
+
+import { cardArrayIndex, convertCardValue } from './convertCard';
 
 export const deletedHandRange = (
   handRange: HandRangeType,
@@ -17,7 +19,7 @@ export const deletedHandRange = (
       });
 
       const suit2 = clonedHandRange[i][cardValue].suit;
-      const deleteIndex2 = cardArrayIndex(suit2, card.mark, true,false);
+      const deleteIndex2 = cardArrayIndex(suit2, card.mark, true, false);
       deleteIndex2?.forEach((index) => {
         clonedHandRange[i][cardValue].hands[index].isDeleted = true;
       });

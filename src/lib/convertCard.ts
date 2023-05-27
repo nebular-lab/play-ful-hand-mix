@@ -1,4 +1,4 @@
-import { CardMarkType, CardType, suitType } from '@/types';
+import { CardMarkType, suitType } from '@/types';
 
 type CardValueMap = {
   [key in

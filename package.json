@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --dir src",
-    "lint:fix": "yarn lint --fix",
+    "lint": "next lint",
+    "lint:fix": "next lint --dir src --fix",
     "format": "prettier --write \"./src/**/*.{ts,tsx}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -40,7 +40,11 @@
     "@storybook/nextjs": "^7.0.10",
     "@storybook/react": "^7.0.10",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-storybook": "^0.6.12",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
     "prettier": "^2.8.8",
     "storybook": "^7.0.10"
   }

@@ -1,7 +1,9 @@
 import { FC, memo } from 'react';
-import Tag from '.';
-import { MoveType } from '@/types';
+
 import { getMoveColor } from '@/lib/getMoveColor';
+import { MoveType } from '@/types';
+
+import Tag from '.';
 type Props = {
   type: 'Position' | 'Move';
   position?: 'OOP' | 'IP';

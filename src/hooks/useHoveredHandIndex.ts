@@ -1,5 +1,6 @@
-import { hoveredHandIndexState } from '@/store';
 import { useRecoilCallback } from 'recoil';
+
+import { hoveredHandIndexState } from '@/store';
 
 export const useHoveredHandIndex = () => {
   const setHoveredHandIndex = useRecoilCallback(

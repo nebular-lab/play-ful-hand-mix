@@ -1,9 +1,10 @@
-import { useHandNode } from '@/hooks/useHandNode';
-import { CardType, PairHandRangeType, PositionType } from '@/types';
 import { memo } from 'react';
-import HandRegisterButton from '.';
 import { useRecoilState } from 'recoil';
+
+import { useHandNode } from '@/hooks/useHandNode';
 import { boardState, handRangePairState, positionState } from '@/store';
+
+import HandRegisterButton from '.';
 
 const HandRegisterButtonContainer = () => {
   const [position] = useRecoilState(positionState);

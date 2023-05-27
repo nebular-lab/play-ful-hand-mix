@@ -1,8 +1,10 @@
 import { FC, memo } from 'react';
-import DrawAction from '.';
-import { getMoveColor } from '@/lib/getMoveColor';
-import { ActionType, MoveType } from '@/types';
+
 import { useDrawActions } from '@/hooks/useDrawActions';
+import { getMoveColor } from '@/lib/getMoveColor';
+import { ActionType } from '@/types';
+
+import DrawAction from '.';
 
 type Props = {
   action: ActionType;

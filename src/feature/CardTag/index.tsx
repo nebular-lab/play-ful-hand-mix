@@ -1,7 +1,9 @@
-import { CardType } from '@/types';
 import { Flex } from '@chakra-ui/react';
-import CardContainer from '../Card/CardContainer';
 import { memo } from 'react';
+
+import { CardType } from '@/types';
+
+import CardContainer from '../Card/CardContainer';
 
 type Props = {
   cards: CardType[];

@@ -1,4 +1,3 @@
-import { CardMarkType, IncludeSuitType, suitType } from '@/types';
 import { Flex } from '@chakra-ui/react';
 import { memo } from 'react';
 import {
@@ -7,6 +6,8 @@ import {
   BsSuitDiamondFill,
   BsSuitSpadeFill,
 } from 'react-icons/bs';
+
+import { CardMarkType } from '@/types';
 
 type Props = {
   toggleIncludeSuit: (suit: CardMarkType) => void;
