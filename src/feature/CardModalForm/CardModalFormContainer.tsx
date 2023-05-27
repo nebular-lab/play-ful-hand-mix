@@ -3,7 +3,6 @@ import _ from 'lodash';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-
 import { useHandNode } from '@/hooks/useHandNode';
 import { boardState } from '@/store';
 import { CardNodeType, CardType } from '@/types';
@@ -19,7 +18,7 @@ export const CardModalFormContainer = (props: Props) => {
   const { onClose, cardNodes, path } = props;
   const { addStreetCard, selectBoard } = useHandNode();
   const [board] = useRecoilState(boardState);
-
+  
   const [selectedCards, setSelectedCards] = useState<CardType[]>([]);
   const cards = cardNodes?.map((cardNode) => cardNode.cards);
   const onCardClick = (clickedCard: CardType) => {
@@ -52,6 +51,7 @@ export const CardModalFormContainer = (props: Props) => {
   return (
     <CardModalForm
       selectedCards={selectedCards}
+      board={board}
       nextNodeCards={cards}
       onCardClick={onCardClick}
       onSubmit={onSubmit}

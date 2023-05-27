@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 
 import { useBoard } from '@/hooks/useBoard';
 import { useDrawActions } from '@/hooks/useDrawActions';
+import { useHandNode } from '@/hooks/useHandNode';
 import { useHandNodePath } from '@/hooks/useHandNodePath';
 import { useHandRange } from '@/hooks/useHandRange';
 import { usePairHandRange } from '@/hooks/usePairHandRange';
@@ -25,6 +26,7 @@ const PositionNode = (props: Props) => {
   const { setBoard } = useBoard();
   const { setPosition } = usePosition();
   const { setPairHandRange } = usePairHandRange();
+  const { resetIsDisplay } = useHandNode();
   const onClick = () => {
     setNodePath(path);
     setHandRange(handRanges[position]);
@@ -32,13 +34,14 @@ const PositionNode = (props: Props) => {
     setBoard(board);
     setPosition(position);
     setPairHandRange(handRanges);
+    resetIsDisplay(path);
   };
   const [nodePath] = useRecoilState(nodePathState);
-  const selectedNodeNum =
+  const displayNodeNum =
     child?.filter((actionNode) => actionNode.isDisplay).length ?? 0;
-  const borderColor = selectedNodeNum > 1 ? 'white' : '';
-  const border = selectedNodeNum > 1 ? '2px' : '';
-  const p = selectedNodeNum > 1 ? 1 : 0;
+  const borderColor = displayNodeNum > 1 ? 'white' : '';
+  const border = displayNodeNum > 1 ? '2px' : '';
+  const p = displayNodeNum > 1 ? 1 : 0;
   return (
     <Flex alignItems={'center'}>
       <TagContainer

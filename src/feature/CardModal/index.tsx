@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
 import { CardNodeType } from '@/types';
 
-import { CardModalFormContainer } from '../CardModalForm/CardModalContainer';
+import { CardModalFormContainer } from '../CardModalForm/CardModalFormContainer';
 
 type Props = {
   isOpen: boolean;
