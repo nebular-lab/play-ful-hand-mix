@@ -19,7 +19,7 @@ type Props = PositionNodeType & { path: Array<number | string> };
 
 const PositionNode = (props: Props) => {
   const { path, position, child, handRanges, actions, board } = props;
-  const { setNodePath } = useHandNodePath(path);
+  const { setNodePath } = useHandNodePath();
   const { setHandRange } = useHandRange();
   const { resetDrawActions } = useDrawActions();
   const { setBoard } = useBoard();

@@ -14,7 +14,7 @@ type Props = StreetNodeType & { path: Array<number | string> };
 const StreetNode = (props: Props) => {
   const { path, child } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { setNodePath } = useHandNodePath(path);
+  const { setNodePath } = useHandNodePath();
   const onClick = () => {
     onOpen();
     setNodePath(path);
