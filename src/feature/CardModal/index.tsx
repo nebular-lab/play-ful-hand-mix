@@ -1,6 +1,6 @@
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
-import { CardNodeType } from '@/types';
+import { CardNodeType, CardType } from '@/types';
 
 import { CardModalFormContainer } from '../CardModalForm/CardModalFormContainer';
 
@@ -9,9 +9,10 @@ type Props = {
   onClose: () => void;
   cardNodes: CardNodeType[] | undefined;
   path: (string | number)[];
+  board: CardType[];
 };
 export const CardModal = (props: Props) => {
-  const { isOpen, onClose, cardNodes, path } = props;
+  const { isOpen, onClose, cardNodes, path, board } = props;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={'3xl'}>
@@ -21,6 +22,7 @@ export const CardModal = (props: Props) => {
           onClose={onClose}
           cardNodes={cardNodes}
           path={path}
+          board={board}
         />
       </ModalContent>
     </Modal>
