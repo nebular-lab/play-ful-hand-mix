@@ -1,10 +1,8 @@
 import { produce } from 'immer';
 import _ from 'lodash';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 
 import { useHandNode } from '@/hooks/useHandNode';
-import { boardState } from '@/store';
 import { CardNodeType, CardType } from '@/types';
 
 import CardModalForm from '.';
@@ -13,12 +11,12 @@ type Props = {
   onClose: () => void;
   cardNodes: CardNodeType[] | undefined;
   path: (string | number)[];
+  board: CardType[];
 };
 export const CardModalFormContainer = (props: Props) => {
-  const { onClose, cardNodes, path } = props;
+  const { onClose, cardNodes, path, board } = props;
   const { addStreetCard, selectBoard } = useHandNode();
-  const [board] = useRecoilState(boardState);
-  
+
   const [selectedCards, setSelectedCards] = useState<CardType[]>([]);
   const cards = cardNodes?.map((cardNode) => cardNode.cards);
   const onCardClick = (clickedCard: CardType) => {

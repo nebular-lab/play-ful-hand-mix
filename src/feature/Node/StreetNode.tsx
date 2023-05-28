@@ -12,7 +12,7 @@ import CardNode from './CardNode';
 type Props = StreetNodeType & { path: Array<number | string> };
 
 const StreetNode = (props: Props) => {
-  const { path, child } = props;
+  const { path, child ,board} = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { setNodePath } = useHandNodePath();
   const onClick = () => {
@@ -30,6 +30,7 @@ const StreetNode = (props: Props) => {
         onClose={onClose}
         cardNodes={child}
         path={path}
+        board={board}
       />
       <UnorderedList m={0} spacing={1}>
         {child?.map((cardNode, index) => {
