@@ -21,7 +21,7 @@
 
 - 画面の左半分を占める塗り絵部分は1326個という非常に多くのコンポーネントで構成されています。そのため、余計な再レンダリングを防ぐために二つの工夫をしました。
   - React.memoやuseCallbackを使用しています。  
-  - recoilのatomFamilyを使って1326個のstateを用意することでそれぞれのコンポーネントを独立させています。
+  - recoilのatomFamilyを使って1326個のstateを用意することでそれぞれのコンポーネントの状態を独立させています。
 
 https://github.com/nebular-lab/play-ful-hand-mix/assets/78769350/34f6f653-7622-4747-b887-04e9c71dee53
 
